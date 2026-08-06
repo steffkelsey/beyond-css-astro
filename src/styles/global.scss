@@ -1,0 +1,11 @@
+$font-family: cursive;
+
+body {
+  font-family: $font-family;
+  font-size: 1.25rem;
+  color: hsl(0 0% 12%);
+  line-height: 1.6;
+  background: hsl(0 15% 90%);
+  width: min(100% - 4rem, 55ch);
+  margin-inline: auto;
+}
