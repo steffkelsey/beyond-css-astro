@@ -58,7 +58,7 @@ $heading-1-font-size: $font-size-900;
 $heading-1-color: $color-primary-400;
 $heading-2-font-size: $font-size-800;
 $heading-2-color: $color-primary-400;
-$heading-3-font-size: $font-size-700;
+$heading-3-font-size: $font-size-600;
 $heading-3-color: $heading-color-default;
 
 // layout
@@ -121,6 +121,7 @@ $button-text-transform: none;
 $button-padding: $size-5 $size-8;
 $button-border: 0;
 $button-border-radius: $border-radius-2;
+$button-flex-gap: 1em;
 
 $button-accent-color: $color-primary-400;
 $button-accent-background: $color-neutral-000;
@@ -135,6 +136,20 @@ $button-secondary-background: $color-neutral-000;
 $button-secondary-color-hover: $color-neutral-000;
 $button-secondary-background-hover: $color-primary-400;
 $button-secondary-border: 2px solid $button-secondary-background-hover;
+// social symbol buttons
+$instagram-gradient: linear-gradient(to right, #F35A18, #B31EAD);
+$button-instagram-color: $color-neutral-000;
+$button-instagram-background-image: $instagram-gradient;
+$button-instagram-color-hover: $color-neutral-000;
+$button-instagram-background-image-hover: $instagram-gradient;
+$button-facebook-color: $color-neutral-000;
+$button-facebook-background: #3251BF;
+$button-facebook-color-hover: $color-neutral-000;
+$button-facebook-background-hover: #3251BF;
+$button-twitter-color: $color-neutral-000;
+$button-twitter-background: $color-neutral-1000;
+$button-twitter-color-hover: $color-neutral-000;
+$button-twitter-background-hover: $color-neutral-1000;
 
 // article previews
 $article-preview-spacing: $size-3;

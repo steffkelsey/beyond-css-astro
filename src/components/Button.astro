@@ -1,10 +1,14 @@
 ---
-const { href, theme = "default", class: className } = Astro.props;
-let El = "button";
-if (href) El = "a";
+const { href, theme = "default", class: className, fullWidth = false, position = "static"} = Astro.props
+let El = "button"
+if (href) El = "a"
+let width = "auto"
+if (fullWidth) {
+  width = "100%"
+}
 ---
 
-<El class:list={["button", className]} {href} data-type={theme}>
+<El class:list={["button", className]} {href} data-type={theme} style={`--width: ${width}; --position: ${position};`}>
   <slot />
 </El>
 
@@ -12,8 +16,12 @@ if (href) El = "a";
   @use "../styles/abstracts" as *;
 
   .button {
+    position: var(--position);
+    width: var(--width);
     display: inline-flex;
     justify-content: center;
+    align-items: center;
+    gap: $button-flex-gap;
     cursor: pointer;
     text-decoration: none;
     line-height: 1;
@@ -54,6 +62,36 @@ if (href) El = "a";
       &:is(:hover, :focus) {
         background-color: $button-accent-background-hover;
         color: $button-accent-color-hover;
+      }
+    }
+
+    &[data-type="instagram"] {
+      background-image: $button-instagram-background-image;
+      color: $button-instagram-color;
+
+      &:is(:hover, :focus) {
+        background-image: $button-instagram-background-image-hover;
+        color: $button-instagram-color-hover;
+      }
+    }
+
+    &[data-type="facebook"] {
+      background-color: $button-facebook-background;
+      color: $button-facebook-color;
+
+      &:is(:hover, :focus) {
+        background-color: $button-facebook-background-hover;
+        color: $button-facebook-color-hover;
+      }
+    }
+
+    &[data-type="twitter"] {
+      background-color: $button-twitter-background;
+      color: $button-twitter-color;
+
+      &:is(:hover, :focus) {
+        background-color: $button-twitter-background-hover;
+        color: $button-twitter-color-hover;
       }
     }
   }

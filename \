@@ -1,0 +1,57 @@
+---
+import Button from '../components/Button.astro'
+import CallToAction from '../components/CallToAction.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+<BaseLayout title="Contact">
+  <div class="container" data-type="narrow">
+    <section class="section flow">
+      <h1 class="heading-2">Send a message</h1>
+      <p class="fs-600">
+Feel free to use the form below to drop us a message. We'll do our best to respond to your inquiry as soon as possible.
+      </p>
+      <form action="POST" class="contact-form flow">
+        <label class="visually-hidden" for="name">Name:</label>
+        <input type="text" name="name" placeholder="Name">
+        <label class="visually-hidden" for="email">Email:</label>
+        <input type="email" name="email" placeholder="Email">
+        <label class="visually-hidden" for="message">Message:</label>
+        <textarea type="text" name="message" placeholder="Message"></textarea>
+        <Button theme="primary" fullWidth=true>Send a message</Button>
+      </form>
+    </section>
+
+    <section class="section flow border-top">
+      <h2 class="heading-3">Stay connected on Social Media</h2>
+      <p>For more instant updates, engaging content, and to be a part of our vibrant community, follow us on social media. Feel free to tag us in your travel and food adventures—we love hearing from fellow explorers!</p>
+      <Button theme="instagram" fullWidth=true><span><img src="/images/instagram_white.svg" alt=""></span><span class="fs-500">Follow on Instagram</span></Button>
+      <Button theme="twitter" fullWidth=true><span><img src="/images/twitter_white.svg" alt="" ></span><span class="fs-500">Follow on Twitter</span></Button>
+      <Button theme="facebook" fullWidth=true><span><img src="/images/facebook_white.svg" alt="" ></span><span class="fs-500">Follow on Facebook</span></Button>
+    </section>
+
+    <section class="section flow border-top">
+      <h2 class="heading-3">Let's connect and explore together</h2>
+      <p>Thank you for considering reaching out to Travel Fun Food. We look forward to connecting with you and sharing more adventures together. Whether it's through email, social media, or in person, let's make the journey of exploration and discovery even more enjoyable.</p>
+     <CallToAction />
+    </section>
+  </div>
+
+</BaseLayout>
+
+<style lang="scss">
+  @use "../styles/abstracts/" as *;
+  .contact-form {
+    > input, > textarea {
+      width: 100%;
+    }
+
+    > textarea {
+      min-height: 11rem;
+      resize: vertical;
+    }
+  }
+
+  .border-top {
+    border-top: $divider;
+  }
+</style>
