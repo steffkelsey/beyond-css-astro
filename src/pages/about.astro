@@ -1,8 +1,66 @@
 ---
+import { getCollection } from 'astro:content'
+import CallToAction from '../components/CallToAction.astro'
+import ViewAllBlogs from '../components/ViewAllBlogs.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
+import ArticlePreview from '../components/ArticlePreview.astro'
+import FullBleedImage from '../components/FullBleedImage.astro'
+
+const newestArticle = (await getCollection("articles")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+).slice(0,1)[0]
 ---
 <BaseLayout title="About">
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates rem tempore repellendus provident cumque, esse aperiam facilis quidem, sapiente vel quod totam quibusdam. Voluptate quaerat dolorum, aliquid numquam neque placeat.</p>
-  <p>Corporis quibusdam eum alias debitis quos maxime fugit enim est placeat molestias perspiciatis fugiat adipisci, veritatis molestiae tempore voluptatem labore reprehenderit tenetur, facere, odio qui vitae. Nisi vero asperiores atque?</p>
-  <p>Iusto illo excepturi neque corporis suscipit vero alias ullam assumenda necessitatibus, officiis rem dolores voluptates quisquam consequatur sed officia quaerat possimus hic aut totam? Molestias officiis assumenda suscipit beatae repellat.</p>
+  <div class="container" data-type="narrow">
+    <section class="section flow">
+      <h1 class="heading-2">Explore behind TFF</h1>
+      <p class="fs-600">
+    Welcome to Travel Fun Food! I'm Linda Xu, the founder and chief explorer behind this adventure-filled blog. With a passion for travel, a love for diverse cuisines, and an insatiable curiosity for the world, I embarked on a journey to share my experiences and discoveries with fellow wanderers.
+      </p>
+      <h2 class="heading-3">From Wanderlust to Words: My Background</h2>
+      <p>
+In a world where every journey leaves an indelible mark, let me share a bit about my background. Raised in [Author's Hometown], my love for exploration was sparked during childhood family vacations. From quaint villages to bustling cities, each destination fueled my curiosity and ignited a desire to uncover the hidden gems of our planet.
+      </p>
+      <FullBleedImage src="/images/about-page-1.jpg" alt=""/>
+      <h2 class="heading-3">The Birth of Travel Fun Food</h2>
+      <p>
+The idea of Travel Fun Food was born from a simple realization – that the joy of travel and the delight of savoring unique cuisines should be shared. What began as a personal journal of my escapades soon transformed into a vibrant platform where travel enthusiasts and foodies alike could find inspiration, tips, and tales from my journeys around the globe.
+      </p>
+    </section>
+
+    <section class="section flow border-top">
+      <h2 class="heading-3">Exploring the World, One Post at a Time</h2>
+      <p>
+Since its inception in 2020, Travel Fun Food has evolved into a tapestry of stories, photographs, and recommendations. From the bustling streets of Ahmedabad to the serene landscapes of India, each post is a chapter in the ever-growing story of exploration and appreciation for the world's diversity.
+      </p>
+      <FullBleedImage src="/images/about-page-2.jpg" alt=""/>
+      <h2 class="heading-3">Become a Part of the Adventure</h2>
+      <p>
+As we continue to unravel the wonders of the world, I invite you to join our community of fellow travelers and food enthusiasts. Follow along for travel tips, culinary delights, and the occasional mishap that adds a touch of spontaneity to our journeys. Let's make Travel Fun Food not just a blog but a shared experience of discovery.
+      </p>
+
+      <CallToAction />
+    </section>
+  </div>
+
+  <div class="container">
+    <section class="latest section | flow border-top">
+      <h2 class="heading-2">Read my latest article</h2>
+      <ArticlePreview excerptLength=200 article={ newestArticle } />
+      <ViewAllBlogs />
+    </section>
+  </div>
+
 </BaseLayout>
+
+<style lang="scss">
+  @use "../styles/abstracts/" as *;
+  .border-top {
+    border-top: $divider;
+  }
+
+  .latest {
+    margin-top: $section-padding-block;
+    border-bottom: $divider;
+  }
+</style>

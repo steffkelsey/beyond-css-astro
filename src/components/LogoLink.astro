@@ -1,0 +1,7 @@
+---
+const { nameOfSite = "Food Fun Travel" } = Astro.props
+---
+<a href="/">
+  <img aria-hidden="true" src="/images/logo.svg" alt="" />
+  <p class="visually-hidden">{nameOfSite}</p>
+</a>

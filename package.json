@@ -12,7 +12,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.1.6"
+    "astro": "^7.2.3",
+    "markdown-it": "^15.0.0"
   },
   "devDependencies": {
     "sass": "^1.102.0",

@@ -1,15 +1,64 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticlePreview from "../components/ArticlePreview.astro"
+
+const featuredArticles = (await getCollection("articles", ({data}) => {
+  return data.featured
+})).slice(0,4)
+const allArticles = await getCollection("articles")
 ---
-<BaseLayout title="Beyond CSS">
-  <p>Astro is pretty neat, and really easy to use!</p>
-  <p>By placing content inside of is Layout, it's being inserted where the Slot is in the template, which is really neat!</p>
-  <h2>Astro has a lot of benefits</h2>
-  <ul>
-    <li>It ships zero JavaScript by default</li>
-    <li>Very customizable</li>
-    <li>Framework agnostic (you don’t need to use a JS framework, or you can use React, Svelte, Vue, etc. (or even combine them))</li>
-    <li>Fantastic documentation</li>
-    <li>Easy to level up with</li>
-  </ul>
+
+<BaseLayout withGradient title="Travel Food Fun">
+  <div class="container flow">
+    <section class="section">
+      <h1 class="heading-1">Travel <br/> Food Fun</h1>
+      <p>
+      Discover the perfect blend of adventure and flavor at Travel Fun Food! Dive into captivating travel stories and indulge your taste buds with delectable culinary experiences. Join us on a journey of exploration and gastronomy, where every adventure is seasoned with excitement. Ready to embark on a world of travel, fun, and food? 🌍
+      </p>
+    </section>
+
+    <section class="section flow">
+      <h2 class="heading-2">Featured articles</h2>
+      <div class="home-featured-grid">
+        <ArticlePreview excerptLength=200 article={featuredArticles[0]} />
+        <div class="home-featured-grid__inner">{featuredArticles.slice(1,featuredArticles.length).map(article => (
+        <ArticlePreview {article}/>
+          )
+          )}</div>
+      </div>
+    </section>
+
+    <section class="section flow">
+      <h2 class="heading-2">Travel articles</h2>
+      <div class="grid-auto-fit">
+        {allArticles.slice(0,3).map(article => (
+        <ArticlePreview excerptLength=80 {article}/>
+          )
+        )}
+      </div>
+    </section>
+
+  </div>
 </BaseLayout>
+
+<style lang="scss">
+  .home-featured-grid {
+    display: grid;
+    gap: 1rem;
+
+    &__inner {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    @media (min-width: 800px) {
+      grid-template-columns: 1fr 1fr;
+
+      &__inner {
+        flex-direction: column;
+      }
+    }
+  }
+</style>

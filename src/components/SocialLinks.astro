@@ -1,0 +1,21 @@
+---
+
+---
+
+<ul class="nav | flex-group">
+  <li><a aria-label="instagram" href="https://instagram.com/tff" target="_blank"><img src="/images/instagram.svg" alt="" /></a></li>
+  <li><a aria-label="twitter" href="https://twitter.com/tff" target="_blank"><img src="/images/twitter.svg" alt="" /></a></li>
+  <li><a aria-label="facebook" href="https://facebook.com/tff" target="_blank"><img src="/images/facebook.svg" alt="" /></a></li>
+</ul>
+
+<style lang="scss">
+  @use '../styles/abstracts' as *;
+
+  ul {
+    --flex-column-gap: #{$navigation-gap};
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>

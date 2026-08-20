@@ -1,0 +1,52 @@
+---
+import LogoLink from "./LogoLink.astro";
+import PrimaryNavigation from "./PrimaryNavigation.astro";
+import SocialLinks from "./SocialLinks.astro";
+---
+
+<footer class="site-footer | padding-block-4 margin-block-start-12">
+  <div class="container flow">
+    <div class="site-footer__inner" style="--flex-column-gap: 2rem;">
+      <LogoLink />
+      <PrimaryNavigation hideHome label="footer navigation" class="ml-auto-bp-small" />
+      <SocialLinks />
+    </div>
+    <p class="text-center">© 2018 TravelFoodFun</p>
+  </div>
+</footer>
+
+<style lang="scss">
+  @use "../styles/abstracts" as *;
+
+  .flex-group {
+    width: 100%;
+  }
+
+  .site-footer {
+    background-color: $footer-background-color;
+    color: $footer-text-color;
+
+    &__inner {
+      display: flex;
+      gap: $size-4;
+      align-items: $site-header-alignment;
+      justify-content: $site-footer-jusitifcation-small-screens;
+      flex-direction: column;
+
+      @include mq(small) {
+        justify-content: $site-footer-jusitifcation-large-screens;
+        flex-direction: row;
+      }
+    }
+
+    a {
+      color: $footer-link-color;
+      text-decoration: $footer-link-text-decoration;
+      font-family: $footer-link-font-family;
+
+      &:is(:hover, :focus) {
+        color: $footer-link-color-hover;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+const { hideHome, label, class: className } = Astro.props
+---
+
+<nav aria-label={label} class:list={[className]}>
+  <ul class="nav | flex-group">
+    {!hideHome && <li><a href="/">Home</a></li>}
+    <li><a href="/articles">Articles</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+
+<style lang="scss">
+  @use "../styles/abstracts" as *;
+  .nav {
+    --flex-column-gap: #{$navigation-gap};
+
+    list-style: none;
+    font-family: $navigation-font-family;
+    font-weight: $navigation-font-weight;
+
+    a {
+      color: $navigation-color;
+      text-decoration: $navigation-link-text-decoration;
+
+      &:is(:hover, :focus) {
+        color: $navigation-color-hover;
+      }
+    }
+  }
+</style>

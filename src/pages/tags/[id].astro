@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import ArticlePreview from "../../components/ArticlePreview.astro"
+import { getCollection, render } from 'astro:content'
+
+export async function getStaticPaths() {
+  const allArticles = await getCollection('articles')
+
+  //for (const a of articles) {
+  //  console.log(a.data)
+  //}
+  const uniqueTags = [...new Set(allArticles.map((article) => article.data.tags).flat())]
+
+  return uniqueTags.map((tag) => {
+    const filteredArticles = allArticles.filter((a) => a.data.tags.includes(tag))
+    return {
+      params: { id: tag.toLowerCase().replace(/\s+/g, '-') },
+      props: { 
+        articles: filteredArticles,
+        tag: tag,
+      },
+    }
+  })
+}
+
+const { articles, tag } = Astro.props
+---
+<BaseLayout>
+  <div class="container flow">
+    <h1 class="heading-2 margin-block-end-8">All articles tagged with {tag}</h1>
+    <div class="grid-auto-fit">
+      {articles.map((article) => <ArticlePreview {article} />)}
+    </div>
+  </div>
+</BaseLayout>

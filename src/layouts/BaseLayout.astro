@@ -1,14 +1,33 @@
 ---
-import BaseHead from '../components/BaseHead.astro'
-import Navigation from '../components/Navigation.astro'
-const {title} = Astro.props
+import BaseHead from "../components/BaseHead.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+const { title, withGradient } = Astro.props;
 ---
 
+<style lang="scss">
+  @use '../styles/abstracts' as *;
+  .with-gradient {
+    background-image: $page-top-gradient;
+    background-repeat: no-repeat;
+    background-size: 100% $page-top-gradient-height;
+  }
+
+  body {
+    display: grid;
+    min-height: 100vdh;
+    grid-template-rows: auto 1fr auto;
+  }
+</style>
+
+<!doctype html>
 <html lang="en">
-  <BaseHead {title}/>
-  <body>
-    <Navigation />
-    <h1>Welcome to {title}</h1>
-      <slot/>
+  <BaseHead {title} />
+  <body class={withGradient && "with-gradient"}>
+    <SiteHeader />
+    <main id="main">
+      <slot />
+    </main>
+    <SiteFooter />
   </body>
 </html>
