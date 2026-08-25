@@ -1,8 +1,8 @@
 ---
 title: Hitchhiking Hacks
 subtitle: The Art of Traveling for Free
-author: Liam Lawson
-imageSrc: hitchhiking-hacks.jpg
+author: src/content/authors/liam.json
+imageSrc: /images/articles/hitchhiking-hacks.jpg
 imageAlt: A man standing at the side of the road sticking out his thumb to try and get a lift
 date: 2023-08-20
 tags:

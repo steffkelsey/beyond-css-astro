@@ -1,12 +1,10 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticlePreview from "../components/ArticlePreview.astro"
+import { listArticles, listFeaturedArticles } from '../lib/tina/data';
 
-const featuredArticles = (await getCollection("articles", ({data}) => {
-  return data.featured
-})).slice(0,4)
-const allArticles = await getCollection("articles")
+const featuredArticles = (await listFeaturedArticles()).slice(0,4)
+const allArticles = await listArticles()
 ---
 
 <BaseLayout withGradient title="Travel Food Fun">

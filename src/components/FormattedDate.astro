@@ -1,8 +1,8 @@
 ---
 const {date} = Astro.props
 ---
-<time datetime={date.toISOString()}>
-  {date.toLocaleDateString('default', {day: 'numeric'})} {date.toLocaleDateString('default', {month: 'short'})}, {date.getFullYear()}
+<time datetime={new Date(date).toISOString()}>
+  {new Date(date).toLocaleDateString('default', {day: 'numeric'})} {new Date(date).toLocaleDateString('default', {month: 'short'})}, {new Date(date).getFullYear()}
 </time>
 
 <style lang="scss">

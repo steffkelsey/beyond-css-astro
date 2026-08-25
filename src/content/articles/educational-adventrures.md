@@ -1,15 +1,15 @@
 ---
+author: src/content/authors/claudette.json
+date: '2023-09-02T00:00:00.000Z'
+featured: true
 title: Educational Adventures
 subtitle: Learning Through Travel with Children
-author: Claudette Tessier
-imageSrc: educational-adventures.jpg 
-imageAlt: A kid standing in a field, looking at a map
-date: 2023-09-02
+imageSrc: /images/articles/educational-adventures.jpg
+imageAlt: 'A kid standing in a field, looking at a map'
 tags:
   - Family Travel
   - Travel Tips
   - Cultural
-featured: true
 ---
 
 Travel broadens the mind, and for children, **it can be a powerful tool for learning**. Stepping outside their comfort zone and experiencing new cultures, historical sites, and natural wonders can spark curiosity, ignite a passion for lifelong learning, and create memories that will last a lifetime.

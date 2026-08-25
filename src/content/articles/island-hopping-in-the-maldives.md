@@ -1,8 +1,8 @@
 ---
 title: Island Hopping in the Maldives
 subtitle: Paradise Found in Turquoise Waters
-author: Manjusha Chaudhari
-imageSrc: island-hopping-in-the-maldives.jpg
+author: src/content/authors/manjusha.json
+imageSrc: /images/articles/island-hopping-in-the-maldives.jpg
 imageAlt: White sand beach with vibrant blue ocean water
 date: 2023-10-12
 tags:

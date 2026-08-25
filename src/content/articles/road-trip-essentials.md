@@ -1,8 +1,8 @@
 ---
 title: Road Trip Essentials
 subtitle: Making Memories with the Family
-author: Claudette Tessier
-imageSrc: road-trip-essentials.jpg
+author: src/content/authors/claudette.json
+imageSrc: /images/articles/road-trip-essentials.jpg
 imageAlt: A van driving down a road, toward a mountain range
 date: 2024-02-10
 tags:

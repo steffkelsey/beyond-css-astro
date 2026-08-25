@@ -1,16 +1,15 @@
 ---
+author: src/content/authors/claudette.json
+date: '2023-09-16T00:00:00.000Z'
+featured: false
 title: Cruising with Kids
 subtitle: Fun for All Ages on the High Seas
-author: Claudette Tessier
-imageSrc: cruising-with-kids.jpg
+imageSrc: /images/articles/cruising-with-kids.jpg
 imageAlt: The deck of a cruise ship with a kid-friendly pool
-date: 2023-09-16
 tags:
   - Family Travel
   - Cruise Travel
   - Travel Tips
-featured: false
-
 ---
 
 A family cruise can be the perfect vacation option, offering a blend of relaxation for parents and endless entertainment for kids. Imagine exploring a new destination each day, indulging in delicious meals, and enjoying exciting onboard activities – all while creating lasting memories with your loved ones. However, planning a cruise with kids requires some extra consideration.

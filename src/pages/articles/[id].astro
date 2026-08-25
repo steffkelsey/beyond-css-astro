@@ -1,41 +1,43 @@
 ---
-import authors from "../../content/authors/authors.json";
 import AboutTheAuthor from "../../components/AboutTheAuthor.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro"
 import FormattedDate from "../../components/FormattedDate.astro"
 import Tag from "../../components/Tag.astro"
-import { getCollection, render } from 'astro:content'
+import { getArticle, listArticles, listFeaturedArticles } from '../../lib/tina/data';
 import ArticlePreview from "../../components/ArticlePreview.astro";
 import ViewAllBlogs from "../../components/ViewAllBlogs.astro";
 import CallToAction from "../../components/CallToAction.astro";
 import FullBleedImage from "../../components/FullBleedImage.astro";
+import TinaMarkdown from '@tinacms/astro/TinaMarkdown.astro';
 
 export async function getStaticPaths() {
-  const articles = await getCollection('articles')
+  const articles = await listArticles()
 
   return articles.map(article => ({
-    params: { id: article.id },
-    props: { article },
+    params: { id: article._sys.filename },
   }))
 }
 
-const { article } = Astro.props
-const { Content } = await render(article)
+const id = (Astro.params.id ?? '').toString()
+const a1 = await getArticle(id)
+const article = a1.data?.article
+
+const articleAuthor = article?.author;
+const featuredArticles = await listFeaturedArticles()
 //console.log(article)
-const articleAuthor = article.data.author;
-const authorInfo = authors.find(function(author) {
-  return author.name === articleAuthor
-})
-const featuredArticles = await getCollection("articles", ({ data }) => {
-  return data.featured
-})
+
 ---
-<BaseLayout>
+<BaseLayout
+  title={article.title}
+    description={article.subtitle}
+    author={article.author}
+    ogimage={`/open-graph/${article._sys.filename}.png`}
+  >
   <article class="full-article | container flow" data-type="narrow">
     <div class="meta">
       <div class="flex-group align-center">
-        {article.data.tags.map((tag) => <Tag  class="tag" {tag} />)}
-        <FormattedDate date={article.data.date}/>
+        {article.tags.map((tag) => <Tag  class="tag" {tag} />)}
+        <FormattedDate date={article.date}/>
       </div>
       <a
         href="#"
@@ -46,18 +48,18 @@ const featuredArticles = await getCollection("articles", ({ data }) => {
         <span>Share</span>
       </a>
     </div>
-    <h1 class="heading-2">{article.data.title}</h1>
-    <h3 class="clr-neutral-300 fs-600">{article.data.subtitle}</h3>
+    <h1 class="heading-2">{article.title}</h1>
+    <h3 class="clr-neutral-300 fs-600">{article.subtitle}</h3>
     <FullBleedImage
-      src=`/images/articles/${article.data.imageSrc}`
-      alt={article.data.imageAlt}
+      src={article.imageSrc}
+      alt={article.imageAlt}
       />
-    <Content />
+      <TinaMarkdown content={article.body} />
     <AboutTheAuthor
-      name={authorInfo.name}
-      description={authorInfo.description}
-      image={authorInfo.image}
-    />
+      name={articleAuthor.name}
+      description={articleAuthor.description}
+      image={articleAuthor.image}
+      />
   </article>
 
   <div class="container">

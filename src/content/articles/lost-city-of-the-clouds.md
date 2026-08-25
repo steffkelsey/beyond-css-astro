@@ -1,8 +1,8 @@
 ---
 title: Lost City of the Clouds
 subtitle: Unveiling the Mystery of Machu Picchu
-author: Maya Lanstro
-imageSrc: lost-city-of-the-clouds.jpg
+author: src/content/authors/maya.json
+imageSrc: /images/articles/lost-city-of-the-clouds.jpg
 imageAlt: Mountain peaks with light clouds around them
 date: 2024-03-12
 tags:

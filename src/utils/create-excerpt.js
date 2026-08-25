@@ -1,16 +1,15 @@
-// https://www.paulie.dev/posts/2023/09/how-to-create-excerpts-with-astro/
 
-import MarkdownIt from 'markdown-it'
-const parser = new MarkdownIt()
+function extractTextFromAst(node) {
+  if (!node) return '';
+  if (node.text) return node.text
+  if (Array.isArray(node.children)) {
+    return node.children.map(extractTextFromAst).join('')
+  }
+  return ''
+}
 
-export const createExcerpt = (body) => {
-  return parser
-    .render(body)
-    .split('\n')
-    .slice(0, 6)
-    .map((str) => {
-      return str.replace(/<\/?[^>]+(>|$)/g, '').split('\n')
-    })
-    .flat()
-    .join(' ')
+export const createExcerpt = (astBody, maxLength = 300) => {
+  const fullText = extractTextFromAst(astBody)
+  if (fullText.length <= maxLength) return fullText
+  return fullText.slice(0, maxLength).trim()
 }

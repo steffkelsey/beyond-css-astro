@@ -1,17 +1,16 @@
 ---
 title: A Culinary Tour of Thailand
 subtitle: Unveiling the Kingdom's Flavors
-author: David Traveleree
-imageSrc: culinary-tour-of-thailand.jpg
+author: src/content/authors/david.json
+imageSrc: /images/articles/culinary-tour-of-thailand.jpg
 imageAlt: An overhead view of a food merchant grilling fish
-date: 2023-06-03
+date: 2023-06-03T00:00:00.000Z
 tags:
   - Food Travel
   - Thailand
   - Southeast Asia
   - Culture
 featured: false
-
 ---
 
 Thailand is a paradise not just for beach lovers and temple enthusiasts, but also for adventurous foodies.

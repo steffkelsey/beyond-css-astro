@@ -1,15 +1,15 @@
 ---
+author: src/content/authors/david.json
+date: '2023-06-17T00:00:00.000Z'
+featured: false
 title: Beyond Baguette
 subtitle: Unveiling the Delights of French Cuisine
-author: David Traveleree
-imageSrc: beyond-baguette.jpg
-imageAlt: An assortment of cheeses, with some bread, a tomato, and a glass of red wine
-date: 2023-06-17
+imageSrc: /images/articles/beyond-baguette.jpg
+imageAlt: 'An assortment of cheeses, with some bread, a tomato, and a glass of red wine'
 tags:
   - Food Travel
   - France
   - Europe
-featured: false
 ---
 
 France, the land of romance, exquisite wines, and, of course, the ubiquitous baguette, is a haven for food lovers. While the image of a crusty baguette might be the first thing that comes to mind when considering French cuisine, venturing beyond this iconic bread reveals a world of culinary artistry, regional specialties, and a deep respect for fresh, seasonal ingredients.

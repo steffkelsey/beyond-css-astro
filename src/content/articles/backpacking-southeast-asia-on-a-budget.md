@@ -1,16 +1,16 @@
 ---
+author: src/content/authors/liam.json
+date: '2023-07-29T00:00:00.000Z'
+featured: false
 title: Backpacking Southeast Asia on a Shoestring Budget
 subtitle: Travelling for less while seeing more
-author: Liam Lawson
-imageSrc: backpacking-southeast-asia-on-a-budget.jpg
-imageAlt: a walking bridge extending over a very large, forested valley
-date: 2023-07-29
+imageSrc: /images/articles/backpacking-southeast-asia-on-a-budget.jpg
+imageAlt: 'a walking bridge extending over a very large, forested valley'
 tags:
   - Backpacking
   - Southeast Asia
   - Budget Travel
   - Travel Tips
-featured: false
 ---
 
 Southeast Asia beckons budget travelers with its stunning beaches, delicious cuisine, and rich cultural experiences. But how do you navigate this paradise on a shoestring budget? Fear not, intrepid adventurer! Here are some tips to help you maximize your experiences in Southeast Asia while minimizing your spending:

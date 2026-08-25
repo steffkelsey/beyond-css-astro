@@ -1,8 +1,8 @@
 ---
 title: The Magic of Orlando
 subtitle: Theme Parks and Beyond with Kids
-author: Claudette Tessier
-imageSrc: the-magic-of-orlando.jpg
+author: src/content/authors/claudette.json
+imageSrc: /images/articles/the-magic-of-orlando.jpg
 imageAlt: The magic castle at Disney Land
 date: 2023-10-10
 tags:

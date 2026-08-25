@@ -1,18 +1,15 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
 import ArticlePreview from "../../components/ArticlePreview.astro"
-import { getCollection, render } from 'astro:content'
+import { listArticles } from "../../lib/tina/data"
 
 export async function getStaticPaths() {
-  const allArticles = await getCollection('articles')
+  const allArticles = await listArticles()
 
-  //for (const a of articles) {
-  //  console.log(a.data)
-  //}
-  const uniqueTags = [...new Set(allArticles.map((article) => article.data.tags).flat())]
+  const uniqueTags = [...new Set(allArticles.map((article) => article.tags).flat())]
 
   return uniqueTags.map((tag) => {
-    const filteredArticles = allArticles.filter((a) => a.data.tags.includes(tag))
+    const filteredArticles = allArticles.filter((a) => a.tags.includes(tag))
     return {
       params: { id: tag.toLowerCase().replace(/\s+/g, '-') },
       props: { 
