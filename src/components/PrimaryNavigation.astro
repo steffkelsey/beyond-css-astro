@@ -1,9 +1,9 @@
 ---
-const { hideHome, label, class: className } = Astro.props
+const { hideHome, label, id, class: className, ...rest } = Astro.props
 ---
 
-<nav aria-label={label} class:list={[className]}>
-  <ul class="nav | flex-group">
+<nav {id} aria-label={label} class:list={[className]} {...rest}>
+  <ul class="nav" {...rest}>
     {!hideHome && <li><a href="/">Home</a></li>}
     <li><a href="/articles">Articles</a></li>
     <li><a href="/about">About</a></li>

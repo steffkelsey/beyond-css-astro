@@ -1,5 +1,5 @@
 ---
-const { href, theme = "default", class: className, fullWidth = false, position = "static"} = Astro.props
+const { href, theme = "default", class: className, fullWidth = false, position = "static", ...rest} = Astro.props
 let El = "button"
 if (href) El = "a"
 let width = "auto"
@@ -8,7 +8,7 @@ if (fullWidth) {
 }
 ---
 
-<El class:list={["button", className]} {href} data-type={theme} style={`--width: ${width}; --position: ${position};`}>
+<El class:list={["button", className]} {href} data-type={theme} style={`--width: ${width}; --position: ${position};`} {...rest}>
   <slot />
 </El>
 

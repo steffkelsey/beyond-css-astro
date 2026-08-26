@@ -1,7 +1,7 @@
 ---
-const { nameOfSite = "Food Fun Travel" } = Astro.props
+const { nameOfSite = "Food Fun Travel", ...rest } = Astro.props
 ---
-<a href="/">
-  <img aria-hidden="true" src="/images/logo.svg" alt="" />
+<a href="/" {...rest}>
+  <img aria-hidden="true" src="/images/logo.svg" alt="" {...rest}/>
   <p class="visually-hidden">{nameOfSite}</p>
 </a>
