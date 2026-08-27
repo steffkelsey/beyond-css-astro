@@ -1,14 +1,12 @@
 ---
-import { getCollection } from 'astro:content'
 import CallToAction from '../components/CallToAction.astro'
 import ViewAllBlogs from '../components/ViewAllBlogs.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import ArticlePreview from '../components/ArticlePreview.astro'
 import FullBleedImage from '../components/FullBleedImage.astro'
+import { listArticles } from '../lib/tina/data';
 
-const newestArticle = (await getCollection("articles")).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-).slice(0,1)[0]
+const newestArticle = (await listArticles()).slice(0,1)[0]
 ---
 <BaseLayout title="About">
   <div class="container" data-type="narrow">
@@ -55,6 +53,7 @@ As we continue to unravel the wonders of the world, I invite you to join our com
 
 <style lang="scss">
   @use "../styles/abstracts/" as *;
+
   .border-top {
     border-top: $divider;
   }
@@ -62,5 +61,11 @@ As we continue to unravel the wonders of the world, I invite you to join our com
   .latest {
     margin-top: $section-padding-block;
     border-bottom: $divider;
+    --article-preview-layout: alternative;
+    --article-preview-right-column: 2fr;
+
+    h2 {
+      margin-block-end: $size-9;
+    }
   }
 </style>

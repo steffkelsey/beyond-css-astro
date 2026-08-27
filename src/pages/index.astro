@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticlePreview from "../components/ArticlePreview.astro"
+import OverflowGrid from "../components/OverflowGrid.astro"
 import { listArticles, listFeaturedArticles } from '../lib/tina/data';
 
 const featuredArticles = (await listFeaturedArticles()).slice(0,4)
@@ -20,20 +21,19 @@ const allArticles = await listArticles()
       <h2 class="heading-2">Featured articles</h2>
       <div class="home-featured-grid">
         <ArticlePreview excerptLength=200 article={featuredArticles[0]} />
-        <div class="home-featured-grid__inner">{featuredArticles.slice(1,featuredArticles.length).map(article => (
-        <ArticlePreview {article}/>
-          )
-          )}</div>
+        <div class="home-featureed-grid__sidebar">
+          <OverflowGrid 
+            articles={featuredArticles.slice(1, featuredArticles.length)} 
+            excerptLength=0
+            />
+        </div>
       </div>
     </section>
 
-    <section class="section flow">
+    <section class="section flow travel">
       <h2 class="heading-2">Travel articles</h2>
       <div class="grid-auto-fit">
-        {allArticles.slice(0,3).map(article => (
-        <ArticlePreview excerptLength=80 {article}/>
-          )
-        )}
+        <OverflowGrid articles={allArticles} columnSize="60%" />
       </div>
     </section>
 
@@ -42,6 +42,8 @@ const allArticles = await listArticles()
 
 <style lang="scss">
   .home-featured-grid {
+    --flow-spacer: 3.5rem;
+
     display: grid;
     gap: 1rem;
 
@@ -52,11 +54,26 @@ const allArticles = await listArticles()
     }
 
     @media (min-width: 800px) {
+      --flow-spacer: 4.5rem;
+
+      --overflow-grid-direction: vertical;
       grid-template-columns: 1fr 1fr;
+
+      .home-featureed-grid__sidebar {
+        --article-preview-layout: alternative;
+      }
 
       &__inner {
         flex-direction: column;
       }
+    }
+  }
+
+  .travel {
+    --flow-spacer: 3.5rem;
+
+    @media (min-width: 800px) {
+      --flow-spacer: 4.5rem;
     }
   }
 </style>
