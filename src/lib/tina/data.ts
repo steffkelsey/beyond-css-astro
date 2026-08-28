@@ -3,6 +3,9 @@ import type { TinaRichTextContent } from '@tinacms/astro';
 import { requestWithMetadata } from '@tinacms/astro/data';
 import client from '../../../tina/__generated__/client';
 
+export const getConfig = () =>
+  requestWithMetadata(client.queries.config({ relativePath: 'config.json' }));
+
 export const getArticle = (slug: string) =>
   requestWithMetadata(client.queries.article({ relativePath: `${slug}.md` }), {
     priority: 'primary',
@@ -12,11 +15,6 @@ export const getAuthor = (slug: string) =>
   requestWithMetadata(client.queries.author({ relativePath: `${slug}.json` }), {
     priority: 'primary',
   });
-
-export type CmsArticle = Awaited<
-  ReturnType<typeof getArticle>
->['data']['article'];
-export type CmsAuthor = Awaited<ReturnType<typeof getAuthor>>['data']['author'];
 
 export async function listArticles() {
   const result = await client.queries.articleConnection();
@@ -48,6 +46,18 @@ export async function listAuthors() {
     edge?.node ? [edge.node] : [],
   );
 }
+
+export type CmsConfig = Awaited<ReturnType<typeof getConfig>>['data']['config'];
+export type CmsArticle = Awaited<
+  ReturnType<typeof getArticle>
+>['data']['article'];
+export type CmsAuthor = Awaited<ReturnType<typeof getAuthor>>['data']['author'];
+
+export type CmsConfigNav = NonNullable<NonNullable<CmsConfig['nav']>[number]>;
+export type CmsConfigSocialLink = NonNullable<
+  NonNullable<CmsConfig['socialLinks']>[number]
+>;
+export type CmsConfigSeo = NonNullable<CmsConfig['seo']>;
 
 /** Tina rich-text bodies are typed as `any` in the generated client; this is what `<TinaMarkdown>` expects. */
 export type RichText = TinaRichTextContent;

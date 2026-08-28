@@ -1,9 +1,21 @@
 ---
+import { tinaField } from '@tinacms/astro/tina-field';
 import Button from './Button.astro';
 import LogoLink from './LogoLink.astro';
 import PrimaryNavigation from './PrimaryNavigation.astro';
 import SocialLinks from './SocialLinks.astro';
-const { skipTo = '#main' } = Astro.props;
+
+import type { CmsConfig } from '../lib/tina/data';
+
+interface Props {
+  config?: CmsConfig | null;
+  skipTo?: String | null;
+}
+
+const { config, skipTo = '#main' } = Astro.props;
+const seo = config?.seo ?? null;
+const nav = (config?.nav ?? []).filter((item) => item !== null);
+const socialLinks = (config?.socialLinks ?? []).filter((item) => item !== null);
 ---
 
 <header class="site-header" transition:persist>
@@ -18,8 +30,18 @@ const { skipTo = '#main' } = Astro.props;
         <img class="close-menu-icon" src="/images/close-menu.svg" alt="" />
       </button>
       <div class="nav-grid flex-group align-center">
-        <PrimaryNavigation id="main-menu" label="primary navigation" />
-        <SocialLinks class="socials" />
+        <PrimaryNavigation id="main-menu" label="primary navigation">
+          {
+            nav.map((item) => (
+              <li>
+                <a href={item.link} data-tina-field={tinaField(item, 'title')}>
+                  {item.title}
+                </a>
+              </li>
+            ))
+          }
+        </PrimaryNavigation>
+        <SocialLinks class="socials" links={socialLinks} />
         <Button class="subscribe" theme="primary"
           >Subscribe to Newsletter</Button
         >

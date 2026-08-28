@@ -1,0 +1,43 @@
+{
+  "seo": {
+    "title": "Travel Food Fun",
+    "description": "Discover the perfect blend of adventure and flavor!",
+    "siteOwner": "TinaCMS + Astro + Kevin Powell",
+    "logo": "/images/logo.svg"
+  },
+  "nav": [
+    {
+      "title": "Home",
+      "link": "/"
+    },
+    {
+      "title": "Articles",
+      "link": "/articles"
+    },
+    {
+      "title": "About",
+      "link": "/about"
+    },
+    {
+      "title": "Contact",
+      "link": "/contact"
+    }
+  ],
+  "socialLinks": [
+    {
+      "title": "Instagram",
+      "link": "https://instagram.com/tff",
+      "icon": "/images/instagram.svg"
+    },
+    {
+      "title": "Twitter",
+      "link": "https://twitter.com/tff",
+      "icon": "/images/twitter.svg"
+    },
+    {
+      "title": "Facebook",
+      "link": "https://facebook.com/tff",
+      "icon": "/images/facebook.svg"
+    }
+  ]
+}
