@@ -1,5 +1,6 @@
 import { defineConfig } from 'tinacms';
 import { ArticlesCollection } from './collections/articles';
+import { GlobalConfigCollection } from './collections/global-config';
 import { AuthorsCollection } from './collections/authors';
 
 // Your hosting provider likely exposes this as an environment variable
@@ -35,6 +36,6 @@ export default defineConfig({
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/r/content-modelling-collections/
   schema: {
-    collections: [ArticlesCollection, AuthorsCollection],
+    collections: [ArticlesCollection, AuthorsCollection, GlobalConfigCollection],
   },
 });

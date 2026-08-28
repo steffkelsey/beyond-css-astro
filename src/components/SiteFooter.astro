@@ -1,19 +1,39 @@
 ---
+import { tinaField } from '@tinacms/astro/tina-field';
 import LogoLink from './LogoLink.astro';
 import PrimaryNavigation from './PrimaryNavigation.astro';
 import SocialLinks from './SocialLinks.astro';
+
+import type { CmsConfig } from '../lib/tina/data';
+interface Props {
+  config?: CmsConfig | null;
+}
+
+const { config } = Astro.props;
+const nav = (config?.nav ?? []).filter(
+  (item) => item !== null && item?.link !== '/',
+);
+const socialLinks = (config?.socialLinks ?? []).filter(
+  (item): item is CmsConfigSocialLink => item !== null,
+);
 ---
 
 <footer class="site-footer">
   <div class="container flow">
     <div class="site-footer__inner">
       <LogoLink />
-      <PrimaryNavigation
-        hideHome
-        label="footer navigation"
-        class="ml-auto-bp-small"
-      />
-      <SocialLinks />
+      <PrimaryNavigation label="footer navigation" class="ml-auto-bp-small">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.link} data-tina-field={tinaField(item, 'title')}>
+                {item.title}
+              </a>
+            </li>
+          ))
+        }
+      </PrimaryNavigation>
+      <SocialLinks links={socialLinks} />
     </div>
     <p class="text-center">© 2018 TravelFoodFun</p>
   </div>
