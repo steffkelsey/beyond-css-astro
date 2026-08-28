@@ -13,6 +13,7 @@ interface Props {
 }
 
 const { config, skipTo = '#main' } = Astro.props;
+const seo = config?.seo ?? null;
 const nav = (config?.nav ?? []).filter((item) => item !== null);
 const socialLinks = (config?.socialLinks ?? []).filter((item) => item !== null);
 ---
@@ -21,7 +22,7 @@ const socialLinks = (config?.socialLinks ?? []).filter((item) => item !== null);
 
 <div class="container" transition:persist>
   <div class="site-header__inner">
-    <LogoLink class="logo-link" />
+    <LogoLink class="logo-link" {seo} />
     <button aria-controls="main-menu" aria-expanded="false">
       <span class="visually-hidden">Menu</span>
       <img class="menu-icon" src="/images/menu.svg" alt="" />
