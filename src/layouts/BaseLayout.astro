@@ -2,7 +2,12 @@
 import BaseHead from '../components/BaseHead.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
+import { getConfig } from '../lib/tina/data';
+import { islands } from '../lib/tina/islands';
+
 const { title, description, author, ogimage, withGradient } = Astro.props;
+const config = (await getConfig()).data?.config ?? null;
 ---
 
 <style lang="scss">
@@ -23,10 +28,14 @@ const { title, description, author, ogimage, withGradient } = Astro.props;
 <html lang="en">
   <BaseHead {title} {description} {author} {ogimage} />
   <body class={withGradient && 'with-gradient'}>
-    <SiteHeader />
+    <TinaIsland name="global" wrapper={islands.global.wrapper}>
+      <SiteHeader config={config} />
+    </TinaIsland>
     <main id="main">
       <slot />
     </main>
-    <SiteFooter />
+    <TinaIsland name="global-footer" wrapper={islands['global-footer'].wrapper}>
+      <SiteFooter config={config} />
+    </TinaIsland>
   </body>
 </html>

@@ -1,23 +1,29 @@
 ---
-const { class: className, ...rest } = Astro.props;
+import { tinaField } from '@tinacms/astro/tina-field';
+import type { CmsConfigSocialLink } from '../lib/tina/data';
+
+interface Props {
+  links?: CmsConfigSocialLink[] | null;
+  class?: String | null;
+}
+
+const { links, class: className, ...rest } = Astro.props;
 ---
 
 <ul class:list={['flex-group', className]} {...rest}>
-  <li>
-    <a aria-label="instagram" href="https://instagram.com/tff" target="_blank"
-      ><img src="/images/instagram.svg" alt="" /></a
-    >
-  </li>
-  <li>
-    <a aria-label="twitter" href="https://twitter.com/tff" target="_blank"
-      ><img src="/images/twitter.svg" alt="" /></a
-    >
-  </li>
-  <li>
-    <a aria-label="facebook" href="https://facebook.com/tff" target="_blank"
-      ><img src="/images/facebook.svg" alt="" /></a
-    >
-  </li>
+  {
+    links?.map((item) => (
+      <li>
+        <a aria-label={item.title} href={item.link} target="_blank">
+          <img
+            src={item.icon}
+            alt=""
+            data-tina-field={tinaField(item, 'icon')}
+          />
+        </a>
+      </li>
+    ))
+  }
 </ul>
 
 <style lang="scss">
