@@ -12,7 +12,7 @@ export const islands: IslandRegistry = {
   global: {
     fetch: () => getConfig(),
     component: SiteHeader,
-    wrapper: { tag: 'div' },
+    wrapper: { tag: 'header', className: 'site-header' },
     propsFromData: (data) => ({
       config: (data as QueryResult<ConfigQuery>).data?.config as
         CmsConfig | undefined,

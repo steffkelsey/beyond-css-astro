@@ -18,12 +18,11 @@ const nav = (config?.nav ?? []).filter((item) => item !== null);
 const socialLinks = (config?.socialLinks ?? []).filter((item) => item !== null);
 ---
 
-<header class="site-header" transition:persist>
   <a href={skipTo} class="skip-navigation">Skip to content</a>
 
-  <div class="container">
+  <div class="container" transition:persist>
     <div class="site-header__inner">
-      <LogoLink class="logo-link" />
+      <LogoLink class="logo-link" {seo} />
       <button aria-controls="main-menu" aria-expanded="false">
         <span class="visually-hidden">Menu</span>
         <img class="menu-icon" src="/images/menu.svg" alt="" />
@@ -48,11 +47,10 @@ const socialLinks = (config?.socialLinks ?? []).filter((item) => item !== null);
       </div>
     </div>
   </div>
-</header>
 
 <script>
   const navToggle = document.querySelector('[aria-controls="main-menu"]');
-  navToggle.addEventListener('click', () => {
+  navToggle?.addEventListener('click', () => {
     const isOpen = navToggle.getAttribute('aria-expanded');
 
     if (isOpen === 'true') {
@@ -72,12 +70,12 @@ const socialLinks = (config?.socialLinks ?? []).filter((item) => item !== null);
     --padding: clamp(3rem, 0.3529rem + 11.7647vw, 6rem);
   }
 
-  .site-header {
+  :global(.site-header) {
     color: $site-header-color;
     background-color: $site-header-background-color;
     padding: $site-header-padding;
 
-    &__inner {
+    .site-header__inner {
       position: relative;
       display: flex;
       gap: $size-4;
@@ -201,11 +199,11 @@ const socialLinks = (config?.socialLinks ?? []).filter((item) => item !== null);
         --padding: var(--sticky-nav-container-padding, #{$container-padding});
       }
 
-      &__inner {
+      .site-header__inner {
         padding: var(--sticky-nav-padding);
       }
 
-      &__inner::before {
+      .site-header__inner::before {
         content: '';
         position: absolute;
         inset: 0;

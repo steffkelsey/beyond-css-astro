@@ -1,8 +1,15 @@
 ---
-const { nameOfSite = 'Food Fun Travel', ...rest } = Astro.props;
+import { tinaField } from '@tinacms/astro/tina-field';
+const { seo, nameOfSite = 'Food Fun Travel', ...rest } = Astro.props;
 ---
 
 <a href="/" {...rest}>
-  <img aria-hidden="true" src="/images/logo.svg" alt="" {...rest} />
+  <img
+    aria-hidden="true"
+    src={seo?.logo}
+    alt=""
+    {...rest}
+    data-tina-field={tinaField(seo, 'logo')}
+  />
   <p class="visually-hidden">{nameOfSite}</p>
 </a>
