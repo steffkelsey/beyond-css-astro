@@ -11,7 +11,6 @@ tags:
   - Chile
   - Patagonia
 featured: false
-
 ---
 
 Patagonia, a rugged region at the southern tip of South America, has captivated explorers for centuries.

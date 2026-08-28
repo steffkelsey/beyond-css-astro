@@ -11,7 +11,6 @@ tags:
   - Adventure Travel
   - South America
 featured: false
-
 ---
 
 The Inca Trail, snaking its way through the majestic Andes Mountains, is more than just a hike; **it's an adventure etched in history**.

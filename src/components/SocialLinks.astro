@@ -1,11 +1,20 @@
 ---
-const {class: className, ...rest} = Astro.props
+const { class: className, ...rest } = Astro.props;
 ---
 
-<ul class:list={["flex-group", className]} {...rest}>
-  <li><a aria-label="instagram" href="https://instagram.com/tff" target="_blank"><img src="/images/instagram.svg" alt="" /></a></li>
-  <li><a aria-label="twitter" href="https://twitter.com/tff" target="_blank"><img src="/images/twitter.svg" alt="" /></a></li>
-  <li><a aria-label="facebook" href="https://facebook.com/tff" target="_blank"><img src="/images/facebook.svg" alt="" /></a></li>
+<ul class:list={['flex-group', className]} {...rest}>
+  <li>
+    <a aria-label="instagram" href="https://instagram.com/tff" target="_blank"
+      ><img src="/images/instagram.svg" alt="" /></a>
+  </li>
+  <li>
+    <a aria-label="twitter" href="https://twitter.com/tff" target="_blank"
+      ><img src="/images/twitter.svg" alt="" /></a>
+  </li>
+  <li>
+    <a aria-label="facebook" href="https://facebook.com/tff" target="_blank"
+      ><img src="/images/facebook.svg" alt="" /></a>
+  </li>
 </ul>
 
 <style lang="scss">

@@ -1,8 +1,8 @@
-@use "sass:meta";
-@use "sass:math";
-@use "sass:map";
-@use "breakpoints" as *;
-@use "tokens" as *;
+@use 'sass:meta';
+@use 'sass:math';
+@use 'sass:map';
+@use 'breakpoints' as *;
+@use 'tokens' as *;
 
 @mixin mq($size) {
   @if map.has-key($breakpoints, $size) {

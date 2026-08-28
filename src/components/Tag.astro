@@ -1,8 +1,12 @@
 ---
-const { tag, class: className, ...rest } = Astro.props
+const { tag, class: className, ...rest } = Astro.props;
 ---
 
-<a class={className} {...rest} href=`/tags/${tag.toLowerCase().replace(/\s+/g, "-")}`>{tag}</a>
+<a
+  class={className}
+  {...rest}
+  href=`/tags/${tag.toLowerCase().replace(/\s+/g, "-")}`>{tag}</a
+>
 
 <style lang="scss">
   @use '../styles/abstracts' as *;

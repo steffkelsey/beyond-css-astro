@@ -11,7 +11,6 @@ tags:
   - Safari
   - Luxury Travel
 featured: false
-
 ---
 
 The thought of a safari conjures images of dusty Land Rovers, basic campsites, and the thrill of encountering Africa's magnificent wildlife. But what if you crave adventure combined with luxurious comfort?

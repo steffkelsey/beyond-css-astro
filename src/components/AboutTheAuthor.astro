@@ -1,5 +1,5 @@
 ---
-const { name, image, description } = Astro.props
+const { name, image, description } = Astro.props;
 ---
 
 <aside class="flow">
@@ -14,21 +14,21 @@ const { name, image, description } = Astro.props
 </aside>
 
 <style lang="scss">
-.author {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: start;
+  .author {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: start;
 
-  > img {
-    width: 9.5rem;
-    aspect-ratio: 1;
-    object-fit: cover;
-  }
+    > img {
+      width: 9.5rem;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
 
-  > div {
-    flex-grow: 1;
-    flex-basis: 70%;
+    > div {
+      flex-grow: 1;
+      flex-basis: 70%;
+    }
   }
-}  
 </style>

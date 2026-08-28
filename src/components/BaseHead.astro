@@ -1,13 +1,13 @@
 ---
-import "../styles/main.scss";
-import { ClientRouter } from "astro:transitions"
-import { SEOMetadata } from "astro-seo-metadata"
-const { 
-  title = "Travel Food Fun",
-  description = "Discover the perfect blend of adventure and flavor at Travel Fun Food! Dive into captivating travel stories and indulge your taste buds with delectable culinary experiences. Join us on a journey of exploration and gastronomy, where every adventure is seasoned with excitement. Ready to embark on a world of travel, fun, and food? 🌍",
-  ogimage = "/newsletter-cta.jpg",
+import '../styles/main.scss';
+import { ClientRouter } from 'astro:transitions';
+import { SEOMetadata } from 'astro-seo-metadata';
+const {
+  title = 'Travel Food Fun',
+  description = 'Discover the perfect blend of adventure and flavor at Travel Fun Food! Dive into captivating travel stories and indulge your taste buds with delectable culinary experiences. Join us on a journey of exploration and gastronomy, where every adventure is seasoned with excitement. Ready to embark on a world of travel, fun, and food? 🌍',
+  ogimage = '/images/newsletter-cta.jpg',
   author,
- } = Astro.props;
+} = Astro.props;
 ---
 
 <head>
@@ -27,12 +27,12 @@ const {
     siteName={'Food Fun Travel'}
     title={title}
     description={description}
-    image={`${Astro.url.origin}${ogimage}`}        
+    image={`${Astro.url.origin}${ogimage}`}
     author={author}
     astroSitemap={true}
     canonicalUrl={Astro.url.toString()}
     type={'website'}
     astroGenerator={true}
-    />
+  />
   <ClientRouter />
 </head>

@@ -1,17 +1,17 @@
-$-ff-heading: "Bricolage Grotesque", sans-serif;
-$-ff-body: "Assistant", system-ui, sans-serif;
+$-ff-heading: 'Bricolage Grotesque', sans-serif;
+$-ff-body: 'Assistant', system-ui, sans-serif;
 
 $font-family-base: $-ff-body;
 $font-family-accent: $-ff-heading;
 
 $font-sizes: (
-  "900": 10rem,
-  "800": 4.5rem,
-  "700": 3rem,
-  "600": 2rem,
-  "500": 1.5rem,
-  "400": 1.125rem,
-  "300": 0.875rem,
+  '900': 10rem,
+  '800': 4.5rem,
+  '700': 3rem,
+  '600': 2rem,
+  '500': 1.5rem,
+  '400': 1.125rem,
+  '300': 0.875rem,
 );
 
 $font-size-300: var(--fs-300);

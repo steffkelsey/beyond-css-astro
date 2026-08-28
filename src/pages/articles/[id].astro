@@ -1,65 +1,66 @@
 ---
-import AboutTheAuthor from "../../components/AboutTheAuthor.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro"
-import FormattedDate from "../../components/FormattedDate.astro"
-import Tag from "../../components/Tag.astro"
-import { getArticle, listArticles, listFeaturedArticles } from '../../lib/tina/data';
-import ArticlePreview from "../../components/ArticlePreview.astro";
-import ViewAllBlogs from "../../components/ViewAllBlogs.astro";
-import CallToAction from "../../components/CallToAction.astro";
-import FullBleedImage from "../../components/FullBleedImage.astro";
+import AboutTheAuthor from '../../components/AboutTheAuthor.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Tag from '../../components/Tag.astro';
+import {
+  getArticle,
+  listArticles,
+  listFeaturedArticles,
+} from '../../lib/tina/data';
+import ArticlePreview from '../../components/ArticlePreview.astro';
+import ViewAllBlogs from '../../components/ViewAllBlogs.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import FullBleedImage from '../../components/FullBleedImage.astro';
 import TinaMarkdown from '@tinacms/astro/TinaMarkdown.astro';
 
 export async function getStaticPaths() {
-  const articles = await listArticles()
+  const articles = await listArticles();
 
-  return articles.map(article => ({
+  return articles.map((article) => ({
     params: { id: article._sys.filename },
-  }))
+  }));
 }
 
-const id = (Astro.params.id ?? '').toString()
-const a1 = await getArticle(id)
-const article = a1.data?.article
+const id = (Astro.params.id ?? '').toString();
+const a1 = await getArticle(id);
+const article = a1.data?.article;
 
 const articleAuthor = article?.author;
-const featuredArticles = await listFeaturedArticles()
+const featuredArticles = await listFeaturedArticles();
 //console.log(article)
-
 ---
+
 <BaseLayout
   title={article.title}
-    description={article.subtitle}
-    author={article.author}
-    ogimage={`/open-graph/${article._sys.filename}.png`}
-  >
+  description={article.subtitle}
+  author={article.author}
+  ogimage={`/open-graph/${article._sys.filename}.png`}
+>
   <article class="full-article | container flow" data-type="narrow">
     <div class="meta">
       <div class="flex-group align-center">
-        {article.tags.map((tag) => <Tag  class="tag" {tag} />)}
-        <FormattedDate date={article.date}/>
+        {article.tags.map((tag) => <Tag class="tag" {tag} />)}
+        <FormattedDate date={article.date} />
       </div>
       <a
         href="#"
         class="flex-group align-center"
         style="--flex-column-gap: .5rem"
-        >
+      >
         <img src="/images/share.svg" alt="" />
         <span>Share</span>
       </a>
     </div>
     <h1 class="heading-2">{article.title}</h1>
     <h3 class="clr-neutral-300 fs-600">{article.subtitle}</h3>
-    <FullBleedImage
-      src={article.imageSrc}
-      alt={article.imageAlt}
-      />
-      <TinaMarkdown content={article.body} />
+    <FullBleedImage src={article.imageSrc} alt={article.imageAlt} />
+    <TinaMarkdown content={article.body} />
     <AboutTheAuthor
       name={articleAuthor.name}
       description={articleAuthor.description}
       image={articleAuthor.image}
-      />
+    />
   </article>
 
   <div class="container">
@@ -78,11 +79,10 @@ const featuredArticles = await listFeaturedArticles()
       <CallToAction withImage />
     </section>
   </div>
-
 </BaseLayout>
 
 <style lang="scss">
-  @use "../../styles/abstracts" as *;
+  @use '../../styles/abstracts' as *;
 
   .meta {
     width: 100%;

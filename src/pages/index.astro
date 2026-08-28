@@ -1,31 +1,35 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import ArticlePreview from "../components/ArticlePreview.astro"
-import OverflowGrid from "../components/OverflowGrid.astro"
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticlePreview from '../components/ArticlePreview.astro';
+import OverflowGrid from '../components/OverflowGrid.astro';
 import { listArticles, listFeaturedArticles } from '../lib/tina/data';
 
-const featuredArticles = (await listFeaturedArticles()).slice(0,4)
-const allArticles = await listArticles()
+const featuredArticles = (await listFeaturedArticles()).slice(0, 4);
+const allArticles = await listArticles();
 ---
 
 <BaseLayout withGradient title="Travel Food Fun">
   <div class="container flow">
     <section class="section">
-      <h1 class="heading-1">Travel <br/> Food Fun</h1>
+      <h1 class="heading-1">Travel <br /> Food Fun</h1>
       <p>
-      Discover the perfect blend of adventure and flavor at Travel Fun Food! Dive into captivating travel stories and indulge your taste buds with delectable culinary experiences. Join us on a journey of exploration and gastronomy, where every adventure is seasoned with excitement. Ready to embark on a world of travel, fun, and food? 🌍
+        Discover the perfect blend of adventure and flavor at Travel Fun Food!
+        Dive into captivating travel stories and indulge your taste buds with
+        delectable culinary experiences. Join us on a journey of exploration and
+        gastronomy, where every adventure is seasoned with excitement. Ready to
+        embark on a world of travel, fun, and food? 🌍
       </p>
     </section>
 
     <section class="section flow">
       <h2 class="heading-2">Featured articles</h2>
       <div class="home-featured-grid">
-        <ArticlePreview excerptLength=200 article={featuredArticles[0]} />
+        <ArticlePreview excerptLength="200" article={featuredArticles[0]} />
         <div class="home-featureed-grid__sidebar">
-          <OverflowGrid 
-            articles={featuredArticles.slice(1, featuredArticles.length)} 
-            excerptLength=0
-            />
+          <OverflowGrid
+            articles={featuredArticles.slice(1, featuredArticles.length)}
+            excerptLength="0"
+          />
         </div>
       </div>
     </section>
@@ -36,7 +40,6 @@ const allArticles = await listArticles()
         <OverflowGrid articles={allArticles} columnSize="60%" />
       </div>
     </section>
-
   </div>
 </BaseLayout>
 

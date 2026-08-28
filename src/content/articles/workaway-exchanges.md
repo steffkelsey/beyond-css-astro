@@ -10,7 +10,6 @@ tags:
   - Volunteering
   - Travel Tips
 featured: false
-
 ---
 
 Do you dream of exploring the world but worry about the ever-dwindling travel budget?

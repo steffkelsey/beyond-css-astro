@@ -10,7 +10,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const config = defineCollection({
-	loader: glob({ pattern: '**/*.json', base: 'src/content/config' }),
+  loader: glob({ pattern: '**/*.json', base: 'src/content/config' }),
 });
 
 export const collections = { config };

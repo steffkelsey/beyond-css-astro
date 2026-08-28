@@ -1,11 +1,11 @@
 ---
-const { src, alt = "", maxHeight = "40vmin" } = Astro.props
+const { src, alt = '', maxHeight = '40vmin' } = Astro.props;
 ---
 
-<img src={src} alt={alt} style={`--max-height: ${maxHeight}`}/>
+<img src={src} alt={alt} style={`--max-height: ${maxHeight}`} />
 
 <style lang="scss">
-  @use "../styles/abstracts/" as *;
+  @use '../styles/abstracts/' as *;
   img {
     max-height: var(--max-height);
     object-fit: cover;

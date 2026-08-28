@@ -1,20 +1,20 @@
 ---
-import Button from "./Button.astro"
-const { withImage } = Astro.props
+import Button from './Button.astro';
+const { withImage } = Astro.props;
 ---
 
-<div class="cta flow" data-type={withImage && "image"}>
+<div class="cta flow" data-type={withImage && 'image'}>
   <h2>Want to get the latest insights on Travel Fun Food?</h2>
   <p>We promise, we won't spam you</p>
   <form action="POST" class="subscribe-form">
     <label class="visually-hidden" for="email">Email:</label>
-    <input type="email" name="email" placeholder="Email">
+    <input type="email" name="email" placeholder="Email" />
     <Button theme="primary">Subscribe to Newsletter</Button>
   </form>
 </div>
 
 <style lang="scss">
-  @use "../styles/abstracts/" as *;
+  @use '../styles/abstracts/' as *;
   .cta {
     background-image: linear-gradient(transparent, $color-accent-100);
     background-repeat: no-repeat;
@@ -35,13 +35,14 @@ const { withImage } = Astro.props
       font-size: $font-size-500;
     }
 
-    &[data-type="image"] {
+    &[data-type='image'] {
       $trans-yellow: rgb(from var(--secondary-100) r g b / 0.09);
-      background-image: linear-gradient(to right, $color-accent-400 30%, $trans-yellow 100%), url("/images/newsletter-cta.jpg");
+      background-image:
+        linear-gradient(to right, $color-accent-400 30%, $trans-yellow 100%),
+        url('/images/newsletter-cta.jpg');
       background-size: 100%, 70%;
       background-position: right;
       border: 0px;
-
 
       > h2 {
         font-size: $font-size-700;

@@ -1,10 +1,16 @@
 ---
-const { hideHome, label, id, class: className, ...rest } = Astro.props
+const { hideHome, label, id, class: className, ...rest } = Astro.props;
 ---
 
 <nav {id} aria-label={label} class:list={[className]} {...rest}>
   <ul class="nav" {...rest}>
-    {!hideHome && <li><a href="/">Home</a></li>}
+    {
+      !hideHome && (
+        <li>
+          <a href="/">Home</a>
+        </li>
+      )
+    }
     <li><a href="/articles">Articles</a></li>
     <li><a href="/about">About</a></li>
     <li><a href="/contact">Contact</a></li>
@@ -12,7 +18,7 @@ const { hideHome, label, id, class: className, ...rest } = Astro.props
 </nav>
 
 <style lang="scss">
-  @use "../styles/abstracts" as *;
+  @use '../styles/abstracts' as *;
   .nav {
     --flex-column-gap: #{$navigation-gap};
 

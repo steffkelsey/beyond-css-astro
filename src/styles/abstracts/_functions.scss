@@ -1,7 +1,7 @@
-@use "sass:map";
-@use "colors" as *;
-@use "typography" as *;
-@use "sizes" as *;
+@use 'sass:map';
+@use 'colors' as *;
+@use 'typography' as *;
+@use 'sizes' as *;
 
 @function clr($color, $shade) {
   @if map.has-key($colors, $color, $shade) {

@@ -11,7 +11,6 @@ tags:
   - Machu Picchu
   - South America
 featured: false
-
 ---
 
 Machu Picchu, the Lost City of the Clouds, shrouded in mist and perched atop a mountain peak in the Peruvian Andes, continues to capture imaginations centuries after its construction.

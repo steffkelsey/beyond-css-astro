@@ -1,10 +1,10 @@
-import type { Collection } from "tinacms";
+import type { Collection } from 'tinacms';
 
 export const AuthorsCollection: Collection = {
-  name: "author",
-  label: "Authors",
-  path: "src/content/authors",
-  format: "json",
+  name: 'author',
+  label: 'Authors',
+  path: 'src/content/authors',
+  format: 'json',
   ui: {
     router({ document }) {
       return `/authors/${document._sys.filename}`;
@@ -12,26 +12,26 @@ export const AuthorsCollection: Collection = {
   },
   fields: [
     {
-      type: "string",
-      name: "name",
-      label: "Name",
+      type: 'string',
+      name: 'name',
+      label: 'Name',
       isTitle: true,
       required: true,
     },
     {
-      type: "image",
-      name: "image",
-      label: "Image",
+      type: 'image',
+      name: 'image',
+      label: 'Image',
       required: true,
     },
     {
-      type: "string",
-      name: "description",
-      label: "Description",
+      type: 'string',
+      name: 'description',
+      label: 'Description',
       required: true,
       ui: {
-        component: "textarea",
+        component: 'textarea',
       },
     },
   ],
-}
+};

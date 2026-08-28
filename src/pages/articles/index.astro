@@ -1,18 +1,15 @@
 ---
 import { listArticles } from '../../lib/tina/data';
-import ArticlePreview from "../../components/ArticlePreview.astro"
-import BaseLayout from "../../layouts/BaseLayout.astro"
+import ArticlePreview from '../../components/ArticlePreview.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const allArticles = await listArticles()
+const allArticles = await listArticles();
 ---
 
 <BaseLayout title="Food Fun Travel | Articles">
   <div class="container">
     <div class="grid-auto-fit">
-      {allArticles.map(article => (
-      <ArticlePreview {article}/>
-        )
-      )}
+      {allArticles.map((article) => <ArticlePreview {article} />)}
     </div>
   </div>
 </BaseLayout>

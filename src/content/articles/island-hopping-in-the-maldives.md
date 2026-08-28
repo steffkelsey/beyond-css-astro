@@ -11,7 +11,6 @@ tags:
   - Beaches
   - Relaxation
 featured: false
-
 ---
 
 The Maldives conjures up images of impossibly blue water, pristine white sand beaches, and luxurious overwater bungalows.

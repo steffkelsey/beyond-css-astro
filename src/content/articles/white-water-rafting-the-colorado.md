@@ -11,7 +11,6 @@ tags:
   - Adventure Travel
   - Nature
 featured: false
-
 ---
 
 The mighty Colorado River, carving its dramatic path through the heart of the American Southwest, has long beckoned thrill-seekers with the promise of an unforgettable adventure.

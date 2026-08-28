@@ -11,7 +11,6 @@ tags:
   - Central America
   - Street Food
 featured: false
-
 ---
 
 Mexico City, the vibrant capital of Mexico, is a sensory overload in the best way possible.

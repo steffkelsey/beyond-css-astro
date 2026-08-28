@@ -1,21 +1,29 @@
 ---
-import FormattedDate from "./FormattedDate.astro"
-import Tag from "./Tag.astro"
-import { createExcerpt } from "../utils/create-excerpt"
-const { article, excerptLength = 0 } = Astro.props
-const withExcerpt = excerptLength > 0
+import FormattedDate from './FormattedDate.astro';
+import Tag from './Tag.astro';
+import { createExcerpt } from '../utils/create-excerpt';
+const { article, excerptLength = 0 } = Astro.props;
+const withExcerpt = excerptLength > 0;
 
 // TODO prop to layout with text to right of image
 ---
+
 <article class="flow">
   <div class="image-container">
-    <img src={article.imageSrc} alt={article.imageAlt}/>
+    <img src={article.imageSrc} alt={article.imageAlt} />
     <Tag class="tag" tag={article.tags[0]} />
   </div>
-  <FormattedDate date={article.date}/>
+  <FormattedDate date={article.date} />
   <h3 class="fs-500 fw-bold">{article.title}</h3>
-  {withExcerpt && <p>{createExcerpt(article.body).substring(0, excerptLength)}...</p>}
-  <p><a href={`/articles/${article._sys.filename}`}>Read more <span class="visually-hidden">about {article.title}</span></a></p>
+  {
+    withExcerpt && (
+      <p>{createExcerpt(article.body).substring(0, excerptLength)}...</p>
+    )
+  }
+  <p>
+    <a href={`/articles/${article._sys.filename}`}
+      >Read more <span class="visually-hidden">about {article.title}</span></a>
+  </p>
 </article>
 
 <style lang="scss">
@@ -36,7 +44,8 @@ const withExcerpt = excerptLength > 0
     bottom: $article-preview-tag-offset;
     left: $article-preview-tag-offset;
 
-    &:hover, &:focus-visible {
+    &:hover,
+    &:focus-visible {
       text-decoration: none;
     }
   }
@@ -56,12 +65,12 @@ const withExcerpt = excerptLength > 0
       display: grid;
       grid-template-columns: 1fr var(--_article-preview-right-column, 1fr);
       grid-template-rows: auto auto auto 1fr;
-      grid-template-areas: 
-        "image date"
-        "image title"
-        "image excerpt"
-        "image link";
-      gap: .5rem 1rem;
+      grid-template-areas:
+        'image date'
+        'image title'
+        'image excerpt'
+        'image link';
+      gap: 0.5rem 1rem;
 
       .image-container {
         grid-area: image;

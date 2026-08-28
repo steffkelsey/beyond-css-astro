@@ -1,19 +1,28 @@
 ---
-import ArticlePreview from "./ArticlePreview.astro"
-const { articles, numberOfArticles = 3, excerptLength = 80, columnSize = "40%"} = Astro.props
+import ArticlePreview from './ArticlePreview.astro';
+const {
+  articles,
+  numberOfArticles = 3,
+  excerptLength = 80,
+  columnSize = '40%',
+} = Astro.props;
 ---
 
 <div class="overflow-container-grid">
-  <div class="overflow-grid" style=`--overflow-grid-column-size: ${columnSize};`>
-    {articles.slice(0,numberOfArticles).map(article => (
-    <ArticlePreview {excerptLength} {article}/>
-      )
-    )}
+  <div
+    class="overflow-grid"
+    style=`--overflow-grid-column-size: ${columnSize};`
+  >
+    {
+      articles
+        .slice(0, numberOfArticles)
+        .map((article) => <ArticlePreview {excerptLength} {article} />)
+    }
   </div>
 </div>
 
-<style lang="scss" >
-  @use "../styles/abstracts" as *;
+<style lang="scss">
+  @use '../styles/abstracts' as *;
 
   .overflow-container-grid {
     --_overflow-grid-direction: var(--overflow-grid-direction, horizontal);
@@ -36,8 +45,8 @@ const { articles, numberOfArticles = 3, excerptLength = 80, columnSize = "40%"} 
         grid-auto-columns: var(--overflow-grid-column-size);
 
         @media (hover: hover) {
-          //scrollbar-width: thin; 
-          scrollbar-color: transparent transparent; 
+          //scrollbar-width: thin;
+          scrollbar-color: transparent transparent;
 
           &:hover {
             scrollbar-color: revert;
@@ -45,6 +54,5 @@ const { articles, numberOfArticles = 3, excerptLength = 80, columnSize = "40%"} 
         }
       }
     }
-
   }
 </style>
