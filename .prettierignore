@@ -1,0 +1,12 @@
+# Ignore artifacts:
+build
+coverage
+
+# Cache & build outputs
+.astro/
+dist/
+
+# TinaCMS generated bundles & locks
+.tina/__generated__/
+tina/__generated__/
+tina-lock.json
