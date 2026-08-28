@@ -10,6 +10,7 @@ interface Props {
 }
 
 const { config } = Astro.props;
+const seo = config?.seo ?? null;
 const nav = (config?.nav ?? []).filter(
   (item) => item !== null && item?.link !== '/',
 );
@@ -21,7 +22,7 @@ const socialLinks = (config?.socialLinks ?? []).filter(
 <footer class="site-footer">
   <div class="container flow">
     <div class="site-footer__inner">
-      <LogoLink />
+      <LogoLink {seo} />
       <PrimaryNavigation label="footer navigation" class="ml-auto-bp-small">
         {
           nav.map((item) => (
