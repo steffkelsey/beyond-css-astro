@@ -1,9 +1,33 @@
 ---
 const { date } = Astro.props;
+
+const d = new Date(date);
+const iso = d.toISOString();
+
+const getSuffix = (day: String) => {
+  switch (day) {
+    case '1':
+    case '21':
+    case '31':
+      return 'st';
+    case '2':
+    case '22':
+      return 'nd';
+    case '2':
+    case '23':
+      return 'rd';
+    default:
+      return 'th';
+  }
+};
+
+const dayStr = d.toLocaleDateString('default', { day: 'numeric' });
+
+const formattedDay = `${dayStr}${getSuffix(dayStr)}`;
 ---
 
-<time datetime={new Date(date).toISOString()}>
-  {new Date(date).toLocaleDateString('default', { day: 'numeric' })}
+<time datetime={iso}>
+  {formattedDay + ' '}
   {new Date(date).toLocaleDateString('default', { month: 'short' })}, {
     new Date(date).getFullYear()
   }

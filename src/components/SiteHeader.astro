@@ -62,6 +62,10 @@ const { skipTo = '#main' } = Astro.props;
       @include mq(medium) {
         justify-content: $site-header-jusitifcation-large-screens;
       }
+
+      .nav-grid {
+        --flex-column-gap: #{$size-9};
+      }
     }
 
     .nav {
