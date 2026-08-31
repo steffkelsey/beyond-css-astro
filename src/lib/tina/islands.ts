@@ -2,13 +2,23 @@
 import type { IslandRegistry } from '@tinacms/astro/experimental';
 import type { QueryResult } from '@tinacms/astro/data';
 
-import type { ConfigQuery } from '../../tina/__generated__/types';
-import type { CmsConfig } from './data';
+import type { ArticleQuery, ConfigQuery } from '../../tina/__generated__/types';
+import type { CmsArticle, CmsConfig } from './data';
+import ArticleBody from '../../components/islands/ArticleBody.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import { getConfig } from './data';
+import { getArticle, getConfig } from './data';
 
 export const islands: IslandRegistry = {
+  article: {
+    fetch: (_request, params) => getArticle(params.get('slug') ?? ''),
+    component: ArticleBody,
+    wrapper: { tag: 'article' },
+    propsFromData: (data) => ({
+      data: (data as QueryResult<ArticleQuery>).data?.article as
+        CmsArticle | undefined,
+    }),
+  },
   global: {
     fetch: () => getConfig(),
     component: SiteHeader,
