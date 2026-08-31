@@ -4,7 +4,7 @@ import { requestWithMetadata } from '@tinacms/astro/data';
 import client from '../../../tina/__generated__/client';
 
 export const getArticle = (slug: string) =>
-  requestWithMetadata(client.queries.article({ relativePath: slug + '.md' }), {
+  requestWithMetadata(client.queries.article({ relativePath: `${slug}.md` }), {
     priority: 'primary',
   });
 

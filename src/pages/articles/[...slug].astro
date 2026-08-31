@@ -18,15 +18,17 @@ export async function getStaticPaths() {
   const articles = await listArticles();
 
   return articles.map((article) => ({
-    params: { id: article._sys.filename },
+    params: { slug: article._sys.filename },
   }));
 }
 
-const id = (Astro.params.id ?? '').toString();
-const a1 = await getArticle(id);
-const article = a1.data?.article;
+const slug = (Astro.params.slug ?? '').toString();
+const thisArticle = await getArticle(slug);
+const article = thisArticle.data?.article;
+if (!article) return new Response('Not Found', { status: 404 });
 
-const articleAuthor = article?.author;
+console.log(article.body);
+
 const featuredArticles = await listFeaturedArticles();
 ---
 
@@ -56,9 +58,9 @@ const featuredArticles = await listFeaturedArticles();
     <FullBleedImage src={article.imageSrc} alt={article.imageAlt} />
     <TinaMarkdown content={article.body} />
     <AboutTheAuthor
-      name={articleAuthor.name}
-      description={articleAuthor.description}
-      image={articleAuthor.image}
+      name={article.author?.name}
+      description={article.author?.description}
+      image={article.author?.image}
     />
   </article>
 
