@@ -1,0 +1,61 @@
+---
+import AboutTheAuthor from '../../components/AboutTheAuthor.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Tag from '../../components/Tag.astro';
+import FullBleedImage from '../../components/FullBleedImage.astro';
+import TinaMarkdown from '@tinacms/astro/TinaMarkdown.astro';
+import { tinaField } from '@tinacms/astro/tina-field';
+import type { CmsArticle } from '../../lib/tina/data';
+
+interface Props {
+  data: CmsArticle;
+}
+
+const { data } = Astro.props;
+---
+
+<div class="section container flow" data-type="narrow">
+  <div class="meta">
+    <div class="flex-group align-center">
+      {data.tags.map((tag) => <Tag class="tag" {tag} />)}
+      <span data-tina-field={tinaField(data, 'date')}
+        ><FormattedDate date={data.date} /></span
+      >
+    </div>
+    <a
+      href="#"
+      class="flex-group align-center"
+      style="--flex-column-gap: .5rem"
+    >
+      <img src="/images/share.svg" alt="" />
+      <span>Share</span>
+    </a>
+  </div>
+  <h1 class="heading-2" data-tina-field={tinaField(data, 'title')}>
+    {data.title}
+  </h1>
+  <h3
+    class="clr-neutral-300 fs-600"
+    data-tina-field={tinaField(data, 'subtitle')}
+  >
+    {data.subtitle}
+  </h3>
+  <div data-tina-field={tinaField(data, 'imageSrc')}>
+    <FullBleedImage src={data.imageSrc} alt={data.imageAlt} />
+  </div>
+  <div data-tina-field={tinaField(data, 'body')} class="full-article flow">
+    <TinaMarkdown content={data.body} />
+  </div>
+  <AboutTheAuthor author={data.author} />
+</div>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .meta {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+</style>

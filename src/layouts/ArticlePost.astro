@@ -1,0 +1,53 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { listFeaturedArticles } from '../lib/tina/data';
+import OverflowGrid from '../components/OverflowGrid.astro';
+import CallToAction from '../components/CallToAction.astro';
+import Divider from '../components/Divider.astro';
+import ViewAllBlogs from '../components/ViewAllBlogs.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  author?: string | null;
+  slug: string;
+}
+
+const featuredArticles = await listFeaturedArticles();
+
+const { title, description, author, slug } = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  author={author}
+  ogimage={`/open-graph/${slug}.png`}
+>
+  <slot />
+  <!-- TODO create blocks out of below for visual editing -->
+  <section class="section container">
+    <Divider />
+  </section>
+
+  <section class="featured section flow container">
+    <h2 class="heading-2">Featured travel articles</h2>
+    <div class="grid-auto-fit">
+      <OverflowGrid articles={featuredArticles.slice(0, 3)} columnSize="60%" />
+    </div>
+    <ViewAllBlogs withBorder />
+  </section>
+
+  <section class="section container">
+    <CallToAction withImage />
+  </section>
+  <!-- End TODO -->
+</BaseLayout>
+
+<style lang="scss">
+  @use '../styles/abstracts' as *;
+
+  .featured {
+    --flow-spacer: #{$featured-content-block-padding};
+  }
+</style>
