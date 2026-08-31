@@ -28,13 +28,12 @@ const article = a1.data?.article;
 
 const articleAuthor = article?.author;
 const featuredArticles = await listFeaturedArticles();
-//console.log(article)
 ---
 
 <BaseLayout
   title={article.title}
   description={article.subtitle}
-  author={article.author}
+  author={article.author?.name}
   ogimage={`/open-graph/${article._sys.filename}.png`}
 >
   <article class="full-article | container flow" data-type="narrow">
