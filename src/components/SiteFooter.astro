@@ -6,7 +6,7 @@ import SocialLinks from './SocialLinks.astro';
 
 <footer class="site-footer | padding-block-4 margin-block-start-12">
   <div class="container flow">
-    <div class="site-footer__inner" style="--flex-column-gap: 2rem;">
+    <div class="site-footer__inner">
       <LogoLink />
       <PrimaryNavigation
         hideHome
@@ -22,10 +22,6 @@ import SocialLinks from './SocialLinks.astro';
 <style lang="scss">
   @use '../styles/abstracts' as *;
 
-  .flex-group {
-    width: 100%;
-  }
-
   .site-footer {
     background-color: $footer-background-color;
     color: $footer-text-color;
@@ -40,6 +36,7 @@ import SocialLinks from './SocialLinks.astro';
       @include mq(small) {
         justify-content: $site-footer-jusitifcation-large-screens;
         flex-direction: row;
+        gap: $size-9;
       }
     }
 

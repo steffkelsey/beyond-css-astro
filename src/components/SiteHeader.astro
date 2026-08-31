@@ -17,10 +17,7 @@ const { skipTo = '#main' } = Astro.props;
         <img class="menu-icon" src="/images/menu.svg" alt="" />
         <img class="close-menu-icon" src="/images/close-menu.svg" alt="" />
       </button>
-      <div
-        class="nav-grid flex-group align-center"
-        style="--flex-column-gap: 2rem;"
-      >
+      <div class="nav-grid flex-group align-center">
         <PrimaryNavigation id="main-menu" label="primary navigation" />
         <SocialLinks class="socials" />
         <Button class="subscribe" theme="primary"
