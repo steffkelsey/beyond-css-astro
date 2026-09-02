@@ -64,19 +64,25 @@ $heading-letter-spacing: -0.02em;
 $heading-line-height: 1.1;
 $heading-text-transform: none;
 
-$heading-1-font-size: $font-size-900;
+$heading-1-font-size: clamp(4.5rem, -0.3529rem + 21.5686vw, 10rem);
 $heading-1-color: $color-primary-400;
-$heading-2-font-size: $font-size-800;
+$heading-2-font-size: clamp(3rem, 1.6765rem + 5.8824vw, 4.5rem);
 $heading-2-color: $color-primary-400;
-$heading-3-font-size: $font-size-600;
+$heading-3-font-size: clamp(1.5rem, 0.75rem + 1.5625vw, 2rem);
 $heading-3-color: $heading-color-default;
+
+$sub-heading-1-font-size: clamp(1.5rem, 1.0588rem + 1.9608vw, 2rem);
 
 // layout
 $grid-gap: $size-6;
+$grid-auto-fit-min: 250px; //357px;
 $flex-group-gap: $size-4;
 
 $hero-padding-block: clamp(15rem, 15vh, 20rem);
-$section-padding-block: clamp(5rem, 10vh, 6rem);
+$section-padding-block: clamp(2.25rem, 1.663rem + 2.6087vw, 3.75rem);
+
+/* @link https://utopia.fyi/clamp/calculator?a=360,1280,40—72 */
+$featured-content-block-padding: clamp(2.5rem, 1.7174rem + 3.4783vw, 4.5rem);
 
 $container-min-margin-inline: $size-4;
 $container-max-width: 70rem; // 1120px
@@ -204,7 +210,8 @@ $article-h3-font-weight: $font-weight-bold;
 $article-lead-font-size-sm-screen: $font-size-500;
 $article-lead-font-size-lg-screen: $font-size-600;
 
-$divider: 1px solid $color-neutral-100;
+$divider-color: $color-neutral-100;
+$divider: 1px solid $divider-color;
 
 //// cards
 //$card-flow-spacing: $size-2;

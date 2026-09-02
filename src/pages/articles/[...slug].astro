@@ -8,10 +8,11 @@ import {
   listArticles,
   listFeaturedArticles,
 } from '../../lib/tina/data';
-import ArticlePreview from '../../components/ArticlePreview.astro';
+import OverflowGrid from '../../components/OverflowGrid.astro';
 import ViewAllBlogs from '../../components/ViewAllBlogs.astro';
 import CallToAction from '../../components/CallToAction.astro';
 import FullBleedImage from '../../components/FullBleedImage.astro';
+import Divider from '../../components/Divider.astro';
 import TinaMarkdown from '@tinacms/astro/TinaMarkdown.astro';
 
 export async function getStaticPaths() {
@@ -27,8 +28,6 @@ const thisArticle = await getArticle(slug);
 const article = thisArticle.data?.article;
 if (!article) return new Response('Not Found', { status: 404 });
 
-console.log(article.body);
-
 const featuredArticles = await listFeaturedArticles();
 ---
 
@@ -38,8 +37,8 @@ const featuredArticles = await listFeaturedArticles();
   author={article.author?.name}
   ogimage={`/open-graph/${article._sys.filename}.png`}
 >
-  <article class="full-article | container flow" data-type="narrow">
-    <div class="meta">
+  <article class="full-article | container section flow" data-type="narrow">
+    <div class="meta fs-400">
       <div class="flex-group align-center">
         {article.tags.map((tag) => <Tag class="tag" {tag} />)}
         <FormattedDate date={article.date} />
@@ -54,7 +53,7 @@ const featuredArticles = await listFeaturedArticles();
       </a>
     </div>
     <h1 class="heading-2">{article.title}</h1>
-    <h3 class="clr-neutral-300 fs-600">{article.subtitle}</h3>
+    <p class="clr-neutral-300 fs-600">{article.subtitle}</p>
     <FullBleedImage src={article.imageSrc} alt={article.imageAlt} />
     <TinaMarkdown content={article.body} />
     <AboutTheAuthor
@@ -64,22 +63,21 @@ const featuredArticles = await listFeaturedArticles();
     />
   </article>
 
-  <div class="container">
-    <section class="featured section | flow">
-      <h2 class="heading-2">Featured travel articles</h2>
-      <div class="grid-auto-fit">
-        {
-          featuredArticles
-            .slice(0, 3)
-            .map((article) => <ArticlePreview excerptLength="80" {article} />)
-        }
-      </div>
-      <ViewAllBlogs withBorder />
-    </section>
-    <section class="section">
-      <CallToAction withImage />
-    </section>
-  </div>
+  <section class="section container">
+    <Divider />
+  </section>
+
+  <section class="featured section flow container">
+    <h2 class="heading-2">Featured travel articles</h2>
+    <div class="grid-auto-fit">
+      <OverflowGrid articles={featuredArticles.slice(0,3)} columnSize="60%" />
+    </div>
+    <ViewAllBlogs withBorder class="padding-block-8"/>
+  </section>
+
+  <section class="section container">
+    <CallToAction withImage />
+  </section>
 </BaseLayout>
 
 <style lang="scss">
@@ -93,7 +91,6 @@ const featuredArticles = await listFeaturedArticles();
   }
 
   .featured {
-    margin-top: $section-padding-block;
-    border-top: $divider;
+    --flow-spacer: #{$featured-content-block-padding};
   }
 </style>

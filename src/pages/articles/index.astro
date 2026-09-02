@@ -1,15 +1,34 @@
 ---
 import { listArticles } from '../../lib/tina/data';
 import ArticlePreview from '../../components/ArticlePreview.astro';
+import CallToAction from '../../components/CallToAction.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const allArticles = await listArticles();
 ---
 
-<BaseLayout title="Food Fun Travel | Articles">
+<BaseLayout title="Food Fun Travel | Articles" withGradient>
   <div class="container">
-    <div class="grid-auto-fit">
-      {allArticles.map((article) => <ArticlePreview {article} />)}
-    </div>
+    <section class="section">
+      <h1 class="heading-2">Articles</h1>
+      <p class="clr-primary-400 sub-heading-1 padding-block-start-4">Discover all about Travel Food Fun with me.</p>
+    </section>
+    <section class="section">
+      <div class="grid-auto-fit">
+        {allArticles.map((article) => <ArticlePreview {article} />)}
+      </div>
+    </section>
+
+    <section class="section">
+      <CallToAction withImage />
+    </section>
   </div>
 </BaseLayout>
+
+<style lang="scss">
+  @use "../../styles/abstracts" as *;
+
+  .grid-auto-fit {
+    --grid-col-min: 357px;
+  }
+</style>

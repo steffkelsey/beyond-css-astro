@@ -3,5 +3,5 @@
 .grid-auto-fit {
   display: grid;
   gap: var(--grid-gap, $grid-gap);
-  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-col-min, $grid-auto-fit-min), 100%), 1fr));
 }

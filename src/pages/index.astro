@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticlePreview from '../components/ArticlePreview.astro';
 import OverflowGrid from '../components/OverflowGrid.astro';
+import CallToAction from '../components/CallToAction.astro';
 import { listArticles, listFeaturedArticles } from '../lib/tina/data';
 
 const featuredArticles = (await listFeaturedArticles()).slice(0, 4);
@@ -9,10 +10,10 @@ const allArticles = await listArticles();
 ---
 
 <BaseLayout withGradient title="Travel Food Fun">
-  <div class="container flow">
+  <div class="container">
     <section class="section">
       <h1 class="heading-1">Travel <br /> Food Fun</h1>
-      <p>
+      <p class="sub-heading-1 clr-primary-400 padding-block-start-6">
         Discover the perfect blend of adventure and flavor at Travel Fun Food!
         Dive into captivating travel stories and indulge your taste buds with
         delectable culinary experiences. Join us on a journey of exploration and
@@ -40,43 +41,33 @@ const allArticles = await listArticles();
         <OverflowGrid articles={allArticles} columnSize="60%" />
       </div>
     </section>
+
+    <section class="section">
+      <CallToAction withImage />
+    </section>
   </div>
 </BaseLayout>
 
 <style lang="scss">
+  @use "../styles/abstracts" as *;
+
   .home-featured-grid {
-    --flow-spacer: 3.5rem;
+    --flow-spacer: #{$featured-content-block-padding};
 
     display: grid;
     gap: 1rem;
 
-    &__inner {
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-    }
-
     @media (min-width: 800px) {
-      --flow-spacer: 4.5rem;
-
       --overflow-grid-direction: vertical;
       grid-template-columns: 1fr 1fr;
 
       .home-featureed-grid__sidebar {
         --article-preview-layout: alternative;
       }
-
-      &__inner {
-        flex-direction: column;
-      }
     }
   }
 
   .travel {
-    --flow-spacer: 3.5rem;
-
-    @media (min-width: 800px) {
-      --flow-spacer: 4.5rem;
-    }
+    --flow-spacer: #{$featured-content-block-padding};
   }
 </style>

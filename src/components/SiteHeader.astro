@@ -56,6 +56,16 @@ const { skipTo = '#main' } = Astro.props;
       align-items: $site-header-alignment;
       justify-content: $site-header-jusitifcation-small-screens;
 
+      --sticky-nav-logo-max-height: 1.5rem;
+
+      .logo-link img {
+        max-height: var(--sticky-nav-logo-max-height);
+      }
+
+      @include mq(small) {
+        --sticky-nav-logo-max-height: 3.06rem;
+      }
+
       @include mq(medium) {
         justify-content: $site-header-jusitifcation-large-screens;
       }
@@ -160,10 +170,6 @@ const { skipTo = '#main' } = Astro.props;
 
       &__inner {
         padding: var(--sticky-nav-padding);
-
-        .logo-link img {
-          max-height: var(--sticky-nav-logo-max-height);
-        }
       }
 
       &__inner::before {
@@ -183,7 +189,7 @@ const { skipTo = '#main' } = Astro.props;
           --sticky-nav-bg: #{$sticky-nav-bg};
           --sticky-nav-padding: #{$sticky-nav-padding};
           --sticky-nav-border: 0;
-          --sticky-nav-logo-max-height: 1.5rem; //3.06rem;
+          --sticky-nav-logo-max-height: 1.5rem;
 
           width: min($sticky-nav-max-width, 90%);
           margin-inline: auto;

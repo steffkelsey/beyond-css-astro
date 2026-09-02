@@ -1,20 +1,41 @@
 ---
 import Button from './Button.astro';
-const { withBorder } = Astro.props;
+const { class: className = '', withBorder } = Astro.props;
 ---
 
-<div class:list={['padding-block-8', withBorder && 'border-top']}>
+<div class:list={[withBorder && 'border-top', className]}>
   <p>We have got lot more exciting blogs for you. Feel free to explore them.</p>
   <Button theme="secondary" href="/articles">View all blogs</Button>
 </div>
 
 <style lang="scss">
   @use '../styles/abstracts' as *;
+
   div {
     display: flex;
     gap: $size-8;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    > p {
+      text-align: center;
+      font-size: $sub-heading-1-font-size;
+      color: $color-neutral-300;
+      font-weight: $font-weight-semi-bold;;
+    }
+
+    > .button {
+      flex-shrink: 0;
+    }
+
+    @include mq(medium) {
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      > p {
+        text-align: left;
+      }
+    }
   }
 
   .border-top {

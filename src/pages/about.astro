@@ -4,6 +4,7 @@ import ViewAllBlogs from '../components/ViewAllBlogs.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticlePreview from '../components/ArticlePreview.astro';
 import FullBleedImage from '../components/FullBleedImage.astro';
+import Divider from '../components/Divider.astro';
 import { listArticles } from '../lib/tina/data';
 
 const newestArticle = (await listArticles()).slice(0, 1)[0];
@@ -13,7 +14,7 @@ const newestArticle = (await listArticles()).slice(0, 1)[0];
   <div class="container" data-type="narrow">
     <section class="section flow">
       <h1 class="heading-2">Explore behind TFF</h1>
-      <p class="fs-600">
+      <p class="sub-heading-1">
         Welcome to Travel Fun Food! I'm Linda Xu, the founder and chief explorer
         behind this adventure-filled blog. With a passion for travel, a love for
         diverse cuisines, and an insatiable curiosity for the world, I embarked
@@ -63,30 +64,33 @@ const newestArticle = (await listArticles()).slice(0, 1)[0];
     </section>
   </div>
 
-  <div class="container">
-    <section class="latest section | flow border-top">
-      <h2 class="heading-2">Read my latest article</h2>
+  <section class="section container">
+    <Divider />
+  </section>
+
+  <section class="latest section container flow">
+    <h2 class="heading-2">Read my latest article</h2>
+    <div>
       <ArticlePreview excerptLength="200" article={newestArticle} />
-      <ViewAllBlogs />
-    </section>
-  </div>
+    </div>
+    <ViewAllBlogs />
+  </section>
+
+  <section class="section container">
+    <Divider />
+  </section>
+
 </BaseLayout>
 
 <style lang="scss">
   @use '../styles/abstracts/' as *;
 
-  .border-top {
-    border-top: $divider;
-  }
-
   .latest {
-    margin-top: $section-padding-block;
-    border-bottom: $divider;
-    --article-preview-layout: alternative;
-    --article-preview-right-column: 2fr;
+    --flow-spacer: #{$featured-content-block-padding};
 
-    h2 {
-      margin-block-end: $size-9;
+    @media (min-width: 800px) {
+      --article-preview-layout: alternative;
+      --article-preview-right-column: 2fr;
     }
   }
 </style>

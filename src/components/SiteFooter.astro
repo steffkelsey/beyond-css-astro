@@ -4,7 +4,7 @@ import PrimaryNavigation from './PrimaryNavigation.astro';
 import SocialLinks from './SocialLinks.astro';
 ---
 
-<footer class="site-footer | padding-block-4 margin-block-start-12">
+<footer class="site-footer">
   <div class="container flow">
     <div class="site-footer__inner">
       <LogoLink />
@@ -25,6 +25,7 @@ import SocialLinks from './SocialLinks.astro';
   .site-footer {
     background-color: $footer-background-color;
     color: $footer-text-color;
+    padding-block-start: $section-padding-block;
 
     &__inner {
       display: flex;

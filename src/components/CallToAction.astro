@@ -16,23 +16,49 @@ const { withImage } = Astro.props;
 <style lang="scss">
   @use '../styles/abstracts/' as *;
   .cta {
+    container-type: inline-size;
     background-image: linear-gradient(transparent, $color-accent-100);
     background-repeat: no-repeat;
     background-size: 100% 80vh;
-    padding: 3rem;
+    padding: clamp(1.75rem, 1.0652rem + 3.0435cqi, 3.5rem);
     border-radius: $border-radius-2;
     border: 1px solid $color-neutral-100;
 
     > h2 {
       font-family: $font-family-accent;
-      font-size: $font-size-600;
+      font-size: clamp(2rem, -1rem + 5.7143cqi, 3rem);
       font-weight: $font-weight-bold;
       color: $color-neutral-1000;
+      line-height: 1;
     }
 
     > p {
       color: $color-neutral-300;
       font-size: $font-size-500;
+    }
+
+    .subscribe-form {
+      flex-wrap: wrap;
+      > input {
+        width: 100%;
+      }
+
+      > button {
+        width: 100%;
+      }
+    }
+
+    @include mq(medium) {
+      .subscribe-form {
+        flex-wrap: no-wrap;
+        > input {
+          width: auto;
+        }
+
+        > button {
+          width: auto;
+        }
+      }
     }
 
     &[data-type='image'] {
@@ -45,7 +71,7 @@ const { withImage } = Astro.props;
       border: 0px;
 
       > h2 {
-        font-size: $font-size-700;
+        //font-size: clamp(2rem, -1rem + 5.7143cqi, 3rem);
         max-width: 23ch;
       }
 
