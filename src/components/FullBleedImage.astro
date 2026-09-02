@@ -2,7 +2,11 @@
 const { src, alt = '', maxHeight = '40vmin', marginTop = '3rem' } = Astro.props;
 ---
 
-<img src={src} alt={alt} style={`--max-height: ${maxHeight}; --margin-top: ${marginTop};` } />
+<img
+  src={src}
+  alt={alt}
+  style={`--max-height: ${maxHeight}; --margin-top: ${marginTop};`}
+/>
 
 <style lang="scss">
   @use '../styles/abstracts/' as *;
