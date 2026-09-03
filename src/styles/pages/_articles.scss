@@ -17,6 +17,22 @@
     font-weight: $article-h3-font-weight;
   }
 
+  > p:has(> img) {
+    img {
+      display: inline-block;
+      max-height: 40vmin;
+      object-fit: cover;
+      width: 100dvw;
+      max-width: 100dvw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-inline-start: -50vw;
+      margin-inline-end: -50vw;
+      margin-block-start: 1rem;
+    }
+  }
+
   @include mq(medium) {
     font-size: $article-body-font-size-lg-screen;
 

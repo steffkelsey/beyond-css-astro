@@ -4,7 +4,7 @@ subtitle: Traveling the World While You Work
 author: src/content/authors/liam.json
 imageSrc: /images/articles/workaway-exchanges.jpg
 imageAlt: A close up of a map with pins in it
-date: 2023-12-08
+date: 2023-12-08T00:00:00.000Z
 tags:
   - Budget Travel
   - Volunteering
@@ -73,6 +73,8 @@ Once you find a listing that interests you, send a personalized message to the h
 ### Prepare for Your Stay
 
 Once your exchange is confirmed, discuss logistics with your host, including arrival details, daily schedule, and any specific needs or requests.
+
+![](/images/articles/exploring-europe-on-a-budget.jpg)
 
 ## Wrap up!
 
