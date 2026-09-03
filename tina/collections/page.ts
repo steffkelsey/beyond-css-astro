@@ -23,6 +23,13 @@ export const PageCollection: Collection = {
         "Shown in the browser tab and search results — not on the page itself. To change the heading visitors see at the top of the page, edit the Headline of the page's Hero block (if it has one) in Page Sections below.",
     },
     {
+      name: 'withGradient',
+      label: 'Show gradient',
+      description:
+        'Include background gradient at the top of the page (must force refresh)',
+      type: 'boolean',
+    },
+    {
       type: 'object',
       list: true,
       name: 'blocks',
@@ -33,4 +40,9 @@ export const PageCollection: Collection = {
       templates: [ctaBlockSchema, dividerBlockSchema],
     },
   ],
+  defaultItem: () => {
+    return {
+      withGradient: false,
+    };
+  },
 };

@@ -1,0 +1,20 @@
+---
+
+---
+
+<style lang="scss">
+  @use '../styles/abstracts' as *;
+  .with-gradient {
+    position: absolute;
+    z-index: -1000;
+    top: 0;
+    left: 0;
+    background-image: $page-top-gradient;
+    background-repeat: no-repeat;
+    background-size: 100% $page-top-gradient-height;
+    min-height: 100dvh;
+    min-width: 100dvw;
+  }
+</style>
+
+<div aria-hidden="true" class="with-gradient"></div>
