@@ -12,9 +12,7 @@ export const getArticle = (slug: string) =>
   });
 
 export const getAuthor = (slug: string) =>
-  requestWithMetadata(client.queries.author({ relativePath: `${slug}.json` }), {
-    priority: 'primary',
-  });
+  requestWithMetadata(client.queries.author({ relativePath: `${slug}.json` }));
 
 export const getPage = (slug: string) =>
   requestWithMetadata(client.queries.page({ relativePath: `${slug}.mdx` }), {
@@ -69,6 +67,7 @@ export type CmsPage = Awaited<ReturnType<typeof getPage>>['data']['page'];
 export type PageBlock = NonNullable<NonNullable<CmsPage['blocks']>[number]>;
 export type PageBlockTypename = PageBlock['__typename'];
 
+export type CtaBlock = Extract<PageBlock, { __typename: 'PageBlocksCta' }>;
 export type DividerBlock = Extract<
   PageBlock,
   { __typename: 'PageBlocksDivider' }

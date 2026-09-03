@@ -1,6 +1,7 @@
 ---
 import { tinaField } from '@tinacms/astro/tina-field';
 import Divider from './Divider.astro';
+import Cta from './Cta.astro';
 import type { CmsPage } from '../../lib/tina/data';
 
 interface Props {
@@ -15,6 +16,8 @@ const blocks = (data?.blocks ?? []).filter((b) => b !== null);
   blocks.map((block) => {
     const rendered = (() => {
       switch (block.__typename) {
+        case 'PageBlocksCta':
+          return <Cta data={block} />;
         case 'PageBlocksDivider':
           return <Divider data={block} />;
       }
