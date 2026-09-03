@@ -9,17 +9,20 @@ export const ctaBlockSchema: Template = {
     {
       type: 'boolean',
       name: 'withImage',
-      label: 'Use component style that includes a background image',
+      label: 'Show Background image',
+      description: 'Use component style that includes a background image',
     },
     {
       type: 'boolean',
       name: 'withPadding',
-      label: 'Use section padding on top and bottom',
+      label: 'Toggle padding',
+      description: 'Use section padding on top and bottom',
     },
     {
       type: 'string',
       name: 'width',
-      label: 'Select component width',
+      label: 'Component width',
+      description: 'Sets component width from full-bleed on down to narrow',
       options: [
         { label: 'Narrow', value: 'narrow' },
         { label: 'Regular', value: 'regular' },

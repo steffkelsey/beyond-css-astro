@@ -1,5 +1,6 @@
 ---
 import Blocks from '../blocks/Blocks.astro';
+import Gradient from '../Gradient.astro';
 import type { CmsPage } from '../../lib/tina/data';
 
 interface Props {
@@ -9,4 +10,5 @@ interface Props {
 const { data } = Astro.props;
 ---
 
+{data?.withGradient && <Gradient />}
 {data && <Blocks data={data} />}
