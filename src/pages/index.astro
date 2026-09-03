@@ -12,44 +12,46 @@ const allArticles = await listArticles();
 ---
 
 <BaseLayout withGradient title="Travel Food Fun">
-  <div class="container">
-    <section class="hero | section flow">
-      <h1 class="heading-1">Travel <br /> Food Fun</h1>
-      <p class="sub-heading-1 clr-primary-400">
-        Discover the perfect blend of adventure and flavor at Travel Fun Food!
-        Dive into captivating travel stories and indulge your taste buds with
-        delectable culinary experiences. Join us on a journey of exploration and
-        gastronomy, where every adventure is seasoned with excitement. Ready to
-        embark on a world of travel, fun, and food? 🌍
-      </p>
-    </section>
+  <main id="main">
+    <div class="container">
+      <section class="hero | section flow">
+        <h1 class="heading-1">Travel <br /> Food Fun</h1>
+        <p class="sub-heading-1 clr-primary-400">
+          Discover the perfect blend of adventure and flavor at Travel Fun Food!
+          Dive into captivating travel stories and indulge your taste buds with
+          delectable culinary experiences. Join us on a journey of exploration
+          and gastronomy, where every adventure is seasoned with excitement.
+          Ready to embark on a world of travel, fun, and food? 🌍
+        </p>
+      </section>
 
-    <section class="home-featured-articles | section flow">
-      <h2 class="heading-2">Featured articles</h2>
-      <div class="home-featured-grid">
-        <ArticlePreview excerptLength="200" article={featuredArticles[0]} />
-        <div class="home-featureed-grid__sidebar">
-          <OverflowGrid
-            articles={featuredArticles.slice(1, featuredArticles.length)}
-            excerptLength="0"
-          />
+      <section class="home-featured-articles | section flow">
+        <h2 class="heading-2">Featured articles</h2>
+        <div class="home-featured-grid">
+          <ArticlePreview excerptLength="200" article={featuredArticles[0]} />
+          <div class="home-featureed-grid__sidebar">
+            <OverflowGrid
+              articles={featuredArticles.slice(1, featuredArticles.length)}
+              excerptLength="0"
+            />
+          </div>
         </div>
-      </div>
-      <ViewAllBlogs withBorder />
-    </section>
+        <ViewAllBlogs withBorder />
+      </section>
 
-    <section class="section flow travel">
-      <h2 class="heading-2">Travel articles</h2>
-      <div class="grid-auto-fit">
-        <OverflowGrid articles={allArticles} columnSize="60%" />
-      </div>
-      <ViewAllBlogs withBorder />
-    </section>
+      <section class="section flow travel">
+        <h2 class="heading-2">Travel articles</h2>
+        <div class="grid-auto-fit">
+          <OverflowGrid articles={allArticles} columnSize="60%" />
+        </div>
+        <ViewAllBlogs withBorder />
+      </section>
 
-    <section class="section">
-      <CallToAction withImage />
-    </section>
-  </div>
+      <section class="section">
+        <CallToAction withImage />
+      </section>
+    </div>
+  </main>
 </BaseLayout>
 
 <style lang="scss">
@@ -72,8 +74,6 @@ const allArticles = await listArticles();
   }
 
   .home-featured-grid {
-    //--flow-spacer: #{$featured-content-block-padding};
-
     display: grid;
     gap: 1rem;
 

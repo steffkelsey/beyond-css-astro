@@ -1,0 +1,28 @@
+---
+import { tinaField } from '@tinacms/astro/tina-field';
+import Divider from './Divider.astro';
+import type { CmsPage } from '../../lib/tina/data';
+
+interface Props {
+  data?: CmsPage | null;
+}
+
+const { data } = Astro.props;
+const blocks = (data?.blocks ?? []).filter((b) => b !== null);
+---
+
+{
+  blocks.map((block) => {
+    const rendered = (() => {
+      switch (block.__typename) {
+        case 'PageBlocksDivider':
+          return <Divider data={block} />;
+      }
+    })();
+    return (
+      <>
+        <div data-tina-field={tinaField(block)}>{rendered}</div>
+      </>
+    );
+  })
+}

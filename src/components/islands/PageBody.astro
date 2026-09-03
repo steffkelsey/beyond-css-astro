@@ -1,0 +1,12 @@
+---
+import Blocks from '../blocks/Blocks.astro';
+import type { CmsPage } from '../../lib/tina/data';
+
+interface Props {
+  data?: CmsPage | null;
+}
+
+const { data } = Astro.props;
+---
+
+{data && <Blocks data={data} />}

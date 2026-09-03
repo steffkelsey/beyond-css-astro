@@ -8,23 +8,26 @@ const allArticles = await listArticles();
 ---
 
 <BaseLayout title="Food Fun Travel | Articles" withGradient>
-  <div class="container">
-    <section class="section flow hero">
-      <h1 class="heading-2">Articles</h1>
-      <p class="clr-primary-400 sub-heading-1">
-        Discover all about Travel Food Fun with me.
-      </p>
-    </section>
-    <section class="section">
-      <div class="grid-auto-fit">
-        {allArticles.map((article) => <ArticlePreview {article} />)}
-      </div>
-    </section>
+  <main id="main">
+    <div class="container">
+      <section class="hero | section flow">
+        <h1 class="heading-2">Articles</h1>
+        <p class="clr-primary-400 sub-heading-1">
+          Discover all about Travel Food Fun with me.
+        </p>
+      </section>
 
-    <section class="section">
-      <CallToAction withImage />
-    </section>
-  </div>
+      <section class="section">
+        <div class="grid-auto-fit">
+          {allArticles.map((article) => <ArticlePreview {article} />)}
+        </div>
+      </section>
+
+      <section class="section">
+        <CallToAction withImage />
+      </section>
+    </div>
+  </main>
 </BaseLayout>
 
 <style lang="scss">

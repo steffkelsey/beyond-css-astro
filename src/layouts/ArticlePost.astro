@@ -24,24 +24,29 @@ const { title, description, author, slug } = Astro.props;
   author={author}
   ogimage={`/open-graph/${slug}.png`}
 >
-  <slot />
-  <!-- TODO create blocks out of below for visual editing -->
-  <section class="section container">
-    <Divider />
-  </section>
+  <main id="main">
+    <slot />
+    <!-- TODO create blocks out of below for visual editing -->
+    <section class="section container">
+      <Divider />
+    </section>
 
-  <section class="featured section flow container">
-    <h2 class="heading-2">Featured travel articles</h2>
-    <div class="grid-auto-fit">
-      <OverflowGrid articles={featuredArticles.slice(0, 3)} columnSize="60%" />
-    </div>
-    <ViewAllBlogs withBorder />
-  </section>
+    <section class="featured section flow container">
+      <h2 class="heading-2">Featured travel articles</h2>
+      <div class="grid-auto-fit">
+        <OverflowGrid
+          articles={featuredArticles.slice(0, 3)}
+          columnSize="60%"
+        />
+      </div>
+      <ViewAllBlogs withBorder />
+    </section>
 
-  <section class="section container">
-    <CallToAction withImage />
-  </section>
-  <!-- End TODO -->
+    <section class="section container">
+      <CallToAction withImage />
+    </section>
+    <!-- End TODO -->
+  </main>
 </BaseLayout>
 
 <style lang="scss">
