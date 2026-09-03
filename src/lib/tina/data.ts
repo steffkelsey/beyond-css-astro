@@ -16,6 +16,11 @@ export const getAuthor = (slug: string) =>
     priority: 'primary',
   });
 
+export const getPage = (slug: string) =>
+  requestWithMetadata(client.queries.page({ relativePath: `${slug}.mdx` }), {
+    priority: 'primary',
+  });
+
 // pageSize = 9999 is a hack to make all the articles come in descending order by date.
 // Ignore pagination until later
 export async function listArticles(pageSize: number = 9999) {
@@ -50,11 +55,27 @@ export async function listAuthors() {
   );
 }
 
+export async function listPages() {
+  const result = await client.queries.pageConnection();
+  return (result.data.pageConnection.edges ?? []).flatMap((edge) =>
+    edge?.node ? [edge.node] : [],
+  );
+}
+
 export type CmsConfig = Awaited<ReturnType<typeof getConfig>>['data']['config'];
 export type CmsArticle = Awaited<
   ReturnType<typeof getArticle>
 >['data']['article'];
 export type CmsAuthor = Awaited<ReturnType<typeof getAuthor>>['data']['author'];
+export type CmsPage = Awaited<ReturnType<typeof getPage>>['data']['page'];
+
+export type PageBlock = NonNullable<NonNullable<CmsPage['blocks']>[number]>;
+export type PageBlockTypename = PageBlock['__typename'];
+
+export type DividerBlock = Extract<
+  PageBlock,
+  { __typename: 'PageBlocksDivider' }
+>;
 
 export type CmsConfigNav = NonNullable<NonNullable<CmsConfig['nav']>[number]>;
 export type CmsConfigSocialLink = NonNullable<
