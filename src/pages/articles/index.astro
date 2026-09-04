@@ -9,9 +9,9 @@ const allArticles = await listArticles();
 
 <BaseLayout title="Food Fun Travel | Articles" withGradient>
   <div class="container">
-    <section class="section">
+    <section class="section flow hero">
       <h1 class="heading-2">Articles</h1>
-      <p class="clr-primary-400 sub-heading-1 padding-block-start-4">
+      <p class="clr-primary-400 sub-heading-1">
         Discover all about Travel Food Fun with me.
       </p>
     </section>
@@ -29,6 +29,12 @@ const allArticles = await listArticles();
 
 <style lang="scss">
   @use '../../styles/abstracts' as *;
+
+  .hero {
+    .sub-heading-1 {
+      --flow-spacer: 1rem;
+    }
+  }
 
   .grid-auto-fit {
     --grid-col-min: 357px;
