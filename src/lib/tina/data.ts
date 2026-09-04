@@ -70,11 +70,16 @@ export type CmsPage = Awaited<ReturnType<typeof getPage>>['data']['page'];
 export type PageBlock = NonNullable<NonNullable<CmsPage['blocks']>[number]>;
 export type PageBlockTypename = PageBlock['__typename'];
 
+export type ContentBlock = Extract<
+  PageBlock,
+  { __typename: 'PageBlocksContent' }
+>;
 export type CtaBlock = Extract<PageBlock, { __typename: 'PageBlocksCta' }>;
 export type DividerBlock = Extract<
   PageBlock,
   { __typename: 'PageBlocksDivider' }
 >;
+export type HeroBlock = Extract<PageBlock, { __typename: 'PageBlocksHero' }>;
 
 export type CmsConfigNav = NonNullable<NonNullable<CmsConfig['nav']>[number]>;
 export type CmsConfigSocialLink = NonNullable<

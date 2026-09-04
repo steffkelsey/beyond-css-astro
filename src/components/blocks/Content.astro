@@ -1,0 +1,22 @@
+---
+import TinaMarkdown from '@tinacms/astro/TinaMarkdown.astro';
+import { tinaField } from '@tinacms/astro/tina-field';
+import type { ContentBlock } from '../../lib/tina/data';
+
+interface Props {
+  data: ContentBlock;
+  class?: string | null;
+}
+
+const { data, class: className } = Astro.props;
+const type = data.width;
+const hasType = type !== 'regular';
+---
+
+<section
+  class:list={['container', data.withPadding && 'section', className]}
+  data-type={hasType && type}
+  data-tina-field={tinaField(data, 'body')}
+>
+  <TinaMarkdown content={data.body} />
+</section>
