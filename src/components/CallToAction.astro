@@ -3,7 +3,7 @@ import Button from './Button.astro';
 const { withImage } = Astro.props;
 ---
 
-<div class="cta flow" data-type={withImage && 'image'}>
+<div class="cta" data-type={withImage && 'image'}>
   <h2>Want to get the latest insights on Travel Fun Food?</h2>
   <p>We promise, we won't spam you</p>
   <form action="POST" class="subscribe-form">
@@ -15,6 +15,7 @@ const { withImage } = Astro.props;
 
 <style lang="scss">
   @use '../styles/abstracts/' as *;
+
   .cta {
     container-type: inline-size;
     background-image: linear-gradient(transparent, $color-accent-100);
@@ -29,15 +30,19 @@ const { withImage } = Astro.props;
       font-size: clamp(2rem, -1rem + 5.7143cqi, 3rem);
       font-weight: $font-weight-bold;
       color: $color-neutral-1000;
-      line-height: 1;
+      line-height: 1.1;
     }
 
     > p {
       color: $color-neutral-300;
       font-size: $font-size-500;
+      /* @link https://utopia.fyi/clamp/calculator?a=360,768,12—18 */
+      margin-block-start: clamp(0.75rem, 0.4191rem + 1.4706vw, 1.125rem);
     }
 
     .subscribe-form {
+      /* @link https://utopia.fyi/clamp/calculator?a=360,768,18—40 */
+      margin-block-start: clamp(1.125rem, -0.0882rem + 5.3922vw, 2.5rem);
       flex-wrap: wrap;
       > input {
         width: 100%;
