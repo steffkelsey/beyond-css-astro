@@ -23,7 +23,11 @@
   }
 }
 
-@mixin heading($fs, $color: $heading-color-default, $line-height: $heading-line-height-default) {
+@mixin heading(
+  $fs,
+  $color: $heading-color-default,
+  $line-height: $heading-line-height-default
+) {
   font-size: $fs;
   color: $color;
 
