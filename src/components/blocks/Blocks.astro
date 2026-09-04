@@ -1,7 +1,8 @@
 ---
 import { tinaField } from '@tinacms/astro/tina-field';
-import Divider from './Divider.astro';
 import Cta from './Cta.astro';
+import Divider from './Divider.astro';
+import Hero from './Hero.astro';
 import type { CmsPage } from '../../lib/tina/data';
 
 interface Props {
@@ -20,6 +21,8 @@ const blocks = (data?.blocks ?? []).filter((b) => b !== null);
           return <Cta data={block} />;
         case 'PageBlocksDivider':
           return <Divider data={block} />;
+        case 'PageBlocksHero':
+          return <Hero data={block} withAccent={data?.withGradient} />;
       }
     })();
     return (

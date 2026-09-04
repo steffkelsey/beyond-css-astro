@@ -1,0 +1,43 @@
+---
+import type { HeroBlock } from '../../lib/tina/data';
+import { tinaField } from '@tinacms/astro/tina-field';
+
+interface Props {
+  data: HeroBlock;
+  withAccent?: boolean | null;
+}
+const { data, withAccent = false } = Astro.props;
+---
+
+<section class:list={['hero | container flow', data.withPadding && 'section']}>
+  <h1
+    class={(data.extraLargeTitle && 'heading-1') || 'heading-2'}
+    data-tina-field={tinaField(data, 'title')}
+    style="white-space: pre-line;"
+  >
+    {data.title}
+  </h1>
+  <p
+    class:list={['sub-heading-1', withAccent && 'clr-primary-400']}
+    data-tina-field={tinaField(data, 'subtitle')}
+    style="white-space: pre-line;"
+  >
+    {data.subtitle}
+  </p>
+</section>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .hero {
+    > p {
+      --flow-spacer: 1em;
+    }
+
+    @include mq(small) {
+      > p {
+        --flow-spacer: 2em;
+      }
+    }
+  }
+</style>
