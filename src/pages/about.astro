@@ -11,7 +11,7 @@ const newestArticle = (await listArticles()).slice(0, 1)[0];
 ---
 
 <BaseLayout title="About">
-  <section class="section container flow" data-type="narrow">
+  <section class="hero | section container flow" data-type="narrow">
     <h1 class="heading-2">Explore behind TFF</h1>
     <p class="sub-heading-1">
       Welcome to Travel Fun Food! I'm Linda Xu, the founder and chief explorer
@@ -83,6 +83,12 @@ const newestArticle = (await listArticles()).slice(0, 1)[0];
 
 <style lang="scss">
   @use '../styles/abstracts/' as *;
+
+  .hero {
+    .sub-heading-1 {
+      --flow-spacer: 1rem;
+    }
+  }
 
   .latest {
     --flow-spacer: #{$featured-content-block-padding};

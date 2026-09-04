@@ -6,7 +6,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Contact">
-  <section class="section flow container" data-type="narrow">
+  <section class="hero | section flow container" data-type="narrow">
     <h1 class="heading-2">Send a message</h1>
     <p class="sub-heading-1">
       Feel free to use the form below to drop us a message. We'll do our best to
@@ -85,6 +85,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <style lang="scss">
   @use '../styles/abstracts/' as *;
+
+  .hero {
+    .sub-heading-1 {
+      --flow-spacer: 1rem;
+    }
+  }
+
   .contact-form {
     > input,
     > textarea {
