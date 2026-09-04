@@ -1,5 +1,6 @@
 ---
 import { tinaField } from '@tinacms/astro/tina-field';
+import Content from './Content.astro';
 import Cta from './Cta.astro';
 import Divider from './Divider.astro';
 import Hero from './Hero.astro';
@@ -17,6 +18,8 @@ const blocks = (data?.blocks ?? []).filter((b) => b !== null);
   blocks.map((block) => {
     const rendered = (() => {
       switch (block.__typename) {
+        case 'PageBlocksContent':
+          return <Content data={block} class="flow full-article" />;
         case 'PageBlocksCta':
           return <Cta data={block} />;
         case 'PageBlocksDivider':

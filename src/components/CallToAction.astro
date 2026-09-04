@@ -5,7 +5,7 @@ import type { CtaBlock } from '../lib/tina/data';
 
 interface Props {
   data?: CtaBlock;
-  withImage: boolean;
+  withImage: boolean | null;
 }
 const { data, withImage } = Astro.props;
 ---
