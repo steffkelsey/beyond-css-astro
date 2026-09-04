@@ -1,4 +1,5 @@
 import type { Collection } from 'tinacms';
+import { contentBlockSchema } from '../../src/components/blocks/content.template';
 import { ctaBlockSchema } from '../../src/components/blocks/cta.template';
 import { dividerBlockSchema } from '../../src/components/blocks/divider.template';
 import { heroBlockSchema } from '../../src/components/blocks/hero.template';
@@ -38,7 +39,12 @@ export const PageCollection: Collection = {
       description:
         'The visible content of the page. When the page starts with a Hero block, its Headline is the main on-page heading — edit that to change what visitors see at the top.',
       ui: { visualSelector: true },
-      templates: [ctaBlockSchema, dividerBlockSchema, heroBlockSchema],
+      templates: [
+        contentBlockSchema,
+        ctaBlockSchema,
+        dividerBlockSchema,
+        heroBlockSchema,
+      ],
     },
   ],
   defaultItem: () => {

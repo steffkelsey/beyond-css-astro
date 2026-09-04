@@ -11,4 +11,4 @@ const { data } = Astro.props;
 ---
 
 {data?.withGradient && <Gradient />}
-{data && <Blocks data={data?.blocks} />}
+{data && <Blocks data={data?.blocks} withGradient={data?.withGradient} />}

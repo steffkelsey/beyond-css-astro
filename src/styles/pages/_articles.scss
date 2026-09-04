@@ -38,6 +38,11 @@
     font-weight: $article-body-strong-font-weight;
   }
 
+  > h1 {
+    font-size: $article-h1-font-size-sm-screen;
+    font-weight: $article-h1-font-weight;
+  }
+
   > h2 {
     font-size: $article-h2-font-size-sm-screen;
     font-weight: $article-h2-font-weight;
@@ -66,6 +71,10 @@
 
   @include mq(medium) {
     font-size: $article-body-font-size-lg-screen;
+
+    > h1 {
+      font-size: $article-h1-font-size-lg-screen;
+    }
 
     > h2 {
       font-size: $article-h2-font-size-lg-screen;
