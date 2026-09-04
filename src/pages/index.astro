@@ -11,9 +11,9 @@ const allArticles = await listArticles();
 
 <BaseLayout withGradient title="Travel Food Fun">
   <div class="container">
-    <section class="section">
+    <section class="hero | section flow">
       <h1 class="heading-1">Travel <br /> Food Fun</h1>
-      <p class="sub-heading-1 clr-primary-400 padding-block-start-6">
+      <p class="sub-heading-1 clr-primary-400">
         Discover the perfect blend of adventure and flavor at Travel Fun Food!
         Dive into captivating travel stories and indulge your taste buds with
         delectable culinary experiences. Join us on a journey of exploration and
@@ -50,6 +50,18 @@ const allArticles = await listArticles();
 
 <style lang="scss">
   @use '../styles/abstracts' as *;
+
+  .hero {
+    > p {
+      --flow-spacer: 1em;
+    }
+
+    @include mq(small) {
+      > p {
+        --flow-spacer: 2em;
+      }
+    }
+  }
 
   .home-featured-grid {
     --flow-spacer: #{$featured-content-block-padding};
