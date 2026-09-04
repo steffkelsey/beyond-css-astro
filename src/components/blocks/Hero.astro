@@ -1,0 +1,56 @@
+---
+import type { HeroBlock } from '../../lib/tina/data';
+import { tinaField } from '@tinacms/astro/tina-field';
+
+interface Props {
+  data: HeroBlock;
+  withAccent?: boolean | null;
+}
+const { data, withAccent = false } = Astro.props;
+const type = data.width;
+const hasType = type !== 'regular';
+const showSubtitle = data.subtitle ?? '' === '';
+---
+
+<section
+  class:list={['hero | container flow', data.withPadding && 'section']}
+  data-type={hasType && type}
+>
+  <h1
+    class={(data.extraLargeTitle && 'heading-1') || 'heading-2'}
+    data-tina-field={tinaField(data, 'title')}
+    style="white-space: pre-line;"
+  >
+    {data.title}
+  </h1>
+  {
+    showSubtitle && (
+      <p
+        class:list={['sub-heading-1', withAccent && 'clr-primary-400']}
+        data-tina-field={tinaField(data, 'subtitle')}
+        style="white-space: pre-line;"
+      >
+        {data.subtitle}
+      </p>
+    )
+  }
+</section>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .hero {
+    // small screens keep top margin above p to 1rem
+    > p {
+      --flow-spacer: 1rem;
+    }
+
+    @include mq(small) {
+      // greater than small screens, only increase top margin on p
+      // if we're using an extra large font on the h1
+      > .heading-1 + p {
+        --flow-spacer: 2em;
+      }
+    }
+  }
+</style>
