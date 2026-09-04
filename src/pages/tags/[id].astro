@@ -27,9 +27,17 @@ const { articles, tag } = Astro.props;
 
 <BaseLayout>
   <div class="container flow">
-    <h1 class="heading-2 margin-block-end-8">All articles tagged with {tag}</h1>
+    <h1 class="heading-2">All articles tagged with {tag}</h1>
     <div class="grid-auto-fit">
       {articles.map((article) => <ArticlePreview {article} />)}
     </div>
   </div>
 </BaseLayout>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .heading-2 {
+    padding-block-end: $section-padding-block;
+  }
+</style>
