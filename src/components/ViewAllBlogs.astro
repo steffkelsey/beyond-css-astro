@@ -3,7 +3,7 @@ import Button from './Button.astro';
 const { class: className = '', withBorder } = Astro.props;
 ---
 
-<div class:list={[withBorder && 'border-top', className]}>
+<div class:list={[withBorder && 'border-top padding-block-start-8', className]}>
   <p>We have got lot more exciting blogs for you. Feel free to explore them.</p>
   <Button theme="secondary" href="/articles">View all blogs</Button>
 </div>

@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticlePreview from '../components/ArticlePreview.astro';
 import OverflowGrid from '../components/OverflowGrid.astro';
 import CallToAction from '../components/CallToAction.astro';
+import ViewAllBlogs from '../components/ViewAllBlogs.astro';
+import Divider from '../components/Divider.astro';
 import { listArticles, listFeaturedArticles } from '../lib/tina/data';
 
 const featuredArticles = (await listFeaturedArticles()).slice(0, 4);
@@ -22,7 +24,7 @@ const allArticles = await listArticles();
       </p>
     </section>
 
-    <section class="section flow">
+    <section class="home-featured-articles | section flow">
       <h2 class="heading-2">Featured articles</h2>
       <div class="home-featured-grid">
         <ArticlePreview excerptLength="200" article={featuredArticles[0]} />
@@ -33,6 +35,7 @@ const allArticles = await listArticles();
           />
         </div>
       </div>
+      <ViewAllBlogs withBorder />
     </section>
 
     <section class="section flow travel">
@@ -40,6 +43,7 @@ const allArticles = await listArticles();
       <div class="grid-auto-fit">
         <OverflowGrid articles={allArticles} columnSize="60%" />
       </div>
+      <ViewAllBlogs withBorder />
     </section>
 
     <section class="section">
@@ -63,8 +67,12 @@ const allArticles = await listArticles();
     }
   }
 
-  .home-featured-grid {
+  .home-featured-articles {
     --flow-spacer: #{$featured-content-block-padding};
+  }
+
+  .home-featured-grid {
+    //--flow-spacer: #{$featured-content-block-padding};
 
     display: grid;
     gap: 1rem;
