@@ -29,7 +29,6 @@ const article = thisArticle.data?.article;
 if (!article) return new Response('Not Found', { status: 404 });
 
 const featuredArticles = await listFeaturedArticles(3);
-console.log(featuredArticles.length);
 ---
 
 <BaseLayout
