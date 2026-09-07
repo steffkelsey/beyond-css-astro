@@ -1,0 +1,27 @@
+---
+import type { ArticleStripBlock } from '../../lib/tina/data';
+import { tinaField } from '@tinacms/astro/tina-field';
+import OverflowGrid from '../OverflowGrid.astro';
+import ViewAllBlogs from '../ViewAllBlogs.astro';
+
+interface Props {
+  data: ArticleStripBlock;
+}
+const { data } = Astro.props;
+
+---
+<section class="section flow strip">
+  <h2 class="heading-2" data-tina-field={tinaField(data, "title")}>{data.title}</h2>
+  <div class="grid-auto-fit">
+    <OverflowGrid {articles} columnSize="60%" />
+  </div>
+  <ViewAllBlogs {data.blogsActionTopBorder && withBorder} />
+</section>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .strip {
+    --flow-spacer: #{$featured-content-block-padding};
+  }
+</style>
