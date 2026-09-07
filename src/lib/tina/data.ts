@@ -18,16 +18,20 @@ export type CmsArticle = Awaited<
 >['data']['article'];
 export type CmsAuthor = Awaited<ReturnType<typeof getAuthor>>['data']['author'];
 
-export async function listArticles() {
+// pageSize = 9999 is a hack to make all the articles come in descending order by date.
+// Ignore pagination until later
+export async function listArticles(pageSize: number = 9999) {
   const result = await client.queries.articleConnection({
     sort: 'date',
-    last: 9999, // hack to make all the articles come in reverse. Ignore page size until later
+    last: pageSize,
   });
   return (result.data.articleConnection.edges ?? []).flatMap((edge) =>
     edge?.node ? [edge.node] : [],
   );
 }
 
+// default pageSize to 3 since we only use this on small Article Preview
+// components
 export async function listFeaturedArticles(pageSize: number = 3) {
   const result = await client.queries.articleConnection({
     filter: { featured: { eq: true } },
