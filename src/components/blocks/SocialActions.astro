@@ -1,0 +1,56 @@
+---
+import type { SocialActionsBlock } from '../../lib/tina/data';
+import { tinaField } from '@tinacms/astro/tina-field';
+import Button from '../Button.astro';
+
+interface Props {
+  data: SocialActionsBlock;
+}
+const { data } = Astro.props;
+const type = data.width;
+const hasType = type !== 'regular';
+---
+
+<section
+  class:list={[
+    'social-actions | container flow',
+    data.withPadding && 'section',
+  ]}
+  data-type={hasType && type}
+>
+  {
+    data.actions?.map((item) => (
+      <Button
+        theme={item?.type}
+        fullWidth="true"
+        position="relative"
+        href={item?.link}
+      >
+        <span class="social-icon">
+          <img src={item?.icon} alt="" />
+        </span>
+        <span class="social-text" data-tina-field={tinaField(item, 'title')}>
+          {item?.title}
+        </span>
+      </Button>
+    ))
+  }
+</section>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .social-actions {
+    /* @link https://utopia.fyi/clamp/calculator?a=768,1280,40—56 */
+    padding-block-start: clamp(2.5rem, 1rem + 3.125vw, 3.5rem);
+  }
+
+  .social-icon {
+    position: absolute;
+    left: 1rem;
+  }
+
+  .social-text {
+    font-size: $action-button-font-size;
+  }
+</style>

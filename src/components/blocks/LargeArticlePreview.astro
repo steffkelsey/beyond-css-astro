@@ -1,0 +1,46 @@
+---
+import type { LargeArticlePreviewBlock } from '../../lib/tina/data';
+import { tinaField } from '@tinacms/astro/tina-field';
+import ArticlePreview from '../ArticlePreview.astro';
+import ViewAllBlogs from '../ViewAllBlogs.astro';
+import { listArticles, listFeaturedArticles } from '../../lib/tina/data';
+
+interface Props {
+  data: LargeArticlePreviewBlock;
+}
+
+const { data } = Astro.props;
+const numArticles = 1;
+if (data.featured) {
+  const articles = await listFeaturedArticles(numArticles);
+  // use var to hoist to top scope
+  var newestArticle = articles[0];
+} else {
+  const articles = await listArticles(numArticles);
+  // use var to hoist to top scope
+  var newestArticle = articles[0];
+}
+---
+
+<section class="preview | section container flow">
+  <h2 class="heading-2" data-tina-field={tinaField(data, 'title')}>
+    {data.title}
+  </h2>
+  <div>
+    <ArticlePreview excerptLength="200" article={newestArticle} />
+  </div>
+  <ViewAllBlogs data={data.titleAction} />
+</section>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .preview {
+    --flow-spacer: #{$featured-content-block-padding};
+
+    @media (min-width: 800px) {
+      --article-preview-layout: alternative;
+      --article-preview-right-column: 2fr;
+    }
+  }
+</style>
