@@ -1,0 +1,59 @@
+---
+import type { ArticleGridBlock } from '../../lib/tina/data';
+import { tinaField } from '@tinacms/astro/tina-field';
+import ArticlePreview from '../ArticlePreview.astro';
+import OverflowGrid from '../OverflowGrid.astro';
+import ViewAllBlogs from '../ViewAllBlogs.astro';
+import { listArticles, listFeaturedArticles } from '../../lib/tina/data';
+
+interface Props {
+  data: ArticleGridBlock;
+}
+
+const { data } = Astro.props;
+let articles;
+const numArticles = 4;
+if (data.featured) {
+  articles = await listFeaturedArticles(numArticles);
+} else {
+  articles = await listArticles(numArticles);
+}
+---
+
+<section class="grid | section container flow">
+  <h2 class="heading-2" data-tina-field={tinaField(data, 'title')}>
+    {data.title}
+  </h2>
+  <div class="featured-grid">
+    <ArticlePreview excerptLength="200" article={articles[0]} />
+    <div class="featured-grid__sidebar">
+      <OverflowGrid
+        articles={articles.slice(1, articles.length)}
+        excerptLength="0"
+      />
+    </div>
+  </div>
+  <ViewAllBlogs data={data.titleAction} />
+</section>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .featured-grid {
+    display: grid;
+    gap: 1rem;
+
+    @media (min-width: 800px) {
+      --overflow-grid-direction: vertical;
+      grid-template-columns: 1fr 1fr;
+
+      .featured-grid__sidebar {
+        --article-preview-layout: alternative;
+      }
+    }
+  }
+
+  .grid {
+    --flow-spacer: #{$featured-content-block-padding};
+  }
+</style>
