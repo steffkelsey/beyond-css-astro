@@ -9,6 +9,7 @@ import metaTags from 'astro-meta-tags';
 export default defineConfig({
   output: 'static',
   adapter: node({ mode: 'standalone' }),
+  redirects: { '/home': '/' },
   integrations: [tina(), metaTags()],
   vite: {
     plugins: [tinaAdminDevRedirect()],

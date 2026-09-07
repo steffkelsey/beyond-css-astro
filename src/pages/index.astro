@@ -1,92 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ArticlePreview from '../components/ArticlePreview.astro';
-import OverflowGrid from '../components/OverflowGrid.astro';
-import CallToAction from '../components/CallToAction.astro';
-import ViewAllBlogs from '../components/ViewAllBlogs.astro';
-import { listArticles, listFeaturedArticles } from '../lib/tina/data';
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
+import PageBody from '../components/islands/PageBody.astro';
+import { getPage } from '../lib/tina/data';
+import { islands } from '../lib/tina/islands';
 
-const featuredArticles = await listFeaturedArticles(4);
-const allArticles = await listArticles();
+const slug = 'home';
+const page = await getPage(slug);
+const data = page.data?.page;
+if (!data) return new Response('Not Found', { status: 404 });
 ---
 
-<BaseLayout withGradient title="Travel Food Fun">
-  <main id="main">
-    <div class="container">
-      <section class="hero | section flow">
-        <h1 class="heading-1">Travel <br /> Food Fun</h1>
-        <p class="sub-heading-1 clr-primary-400">
-          Discover the perfect blend of adventure and flavor at Travel Fun Food!
-          Dive into captivating travel stories and indulge your taste buds with
-          delectable culinary experiences. Join us on a journey of exploration
-          and gastronomy, where every adventure is seasoned with excitement.
-          Ready to embark on a world of travel, fun, and food? 🌍
-        </p>
-      </section>
-
-      <section class="home-featured-articles | section flow">
-        <h2 class="heading-2">Featured articles</h2>
-        <div class="home-featured-grid">
-          <ArticlePreview excerptLength="200" article={featuredArticles[0]} />
-          <div class="home-featureed-grid__sidebar">
-            <OverflowGrid
-              articles={featuredArticles.slice(1, featuredArticles.length)}
-              excerptLength="0"
-            />
-          </div>
-        </div>
-        <ViewAllBlogs withBorder />
-      </section>
-
-      <section class="section flow travel">
-        <h2 class="heading-2">Travel articles</h2>
-        <div class="grid-auto-fit">
-          <OverflowGrid articles={allArticles} columnSize="60%" />
-        </div>
-        <ViewAllBlogs withBorder />
-      </section>
-
-      <section class="section">
-        <CallToAction withImage />
-      </section>
-    </div>
-  </main>
+<BaseLayout title={data.seoTitle}>
+  <TinaIsland
+    name="page"
+    wrapper={islands.page.wrapper}
+    params={{ slug }}
+    primary
+  >
+    <PageBody data={data} />
+  </TinaIsland>
 </BaseLayout>
-
-<style lang="scss">
-  @use '../styles/abstracts' as *;
-
-  .hero {
-    > p {
-      --flow-spacer: 1em;
-    }
-
-    @include mq(small) {
-      > p {
-        --flow-spacer: 2em;
-      }
-    }
-  }
-
-  .home-featured-articles {
-    --flow-spacer: #{$featured-content-block-padding};
-  }
-
-  .home-featured-grid {
-    display: grid;
-    gap: 1rem;
-
-    @media (min-width: 800px) {
-      --overflow-grid-direction: vertical;
-      grid-template-columns: 1fr 1fr;
-
-      .home-featureed-grid__sidebar {
-        --article-preview-layout: alternative;
-      }
-    }
-  }
-
-  .travel {
-    --flow-spacer: #{$featured-content-block-padding};
-  }
-</style>
