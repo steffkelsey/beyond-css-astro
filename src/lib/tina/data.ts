@@ -88,6 +88,10 @@ export type DividerBlock = Extract<
   { __typename: 'PageBlocksDivider' }
 >;
 export type HeroBlock = Extract<PageBlock, { __typename: 'PageBlocksHero' }>;
+export type LargeArticlePreviewBlock = Extract<
+  PageBlock,
+  { __typename: 'PageBlocksLargeArticlePreview' }
+>;
 
 export type CmsConfigNav = NonNullable<NonNullable<CmsConfig['nav']>[number]>;
 export type CmsConfigSocialLink = NonNullable<

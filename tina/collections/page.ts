@@ -5,6 +5,7 @@ import { contentBlockSchema } from '../../src/components/blocks/content.template
 import { ctaBlockSchema } from '../../src/components/blocks/cta.template';
 import { dividerBlockSchema } from '../../src/components/blocks/divider.template';
 import { heroBlockSchema } from '../../src/components/blocks/hero.template';
+import { largeArticlePreviewBlockSchema } from '../../src/components/blocks/largearticlepreview.template';
 
 export const PageCollection: Collection = {
   name: 'page',
@@ -48,6 +49,7 @@ export const PageCollection: Collection = {
         ctaBlockSchema,
         dividerBlockSchema,
         heroBlockSchema,
+        largeArticlePreviewBlockSchema,
       ],
     },
   ],
