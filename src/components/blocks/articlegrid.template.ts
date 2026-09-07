@@ -1,9 +1,9 @@
 import type { Template } from 'tinacms';
 import { miniCTA } from './mini-cta';
 
-export const articleStripBlockSchema: Template = {
-  name: 'articleStrip',
-  label: 'Article Strip',
+export const articleGridBlockSchema: Template = {
+  name: 'articleGrid',
+  label: 'Article Grid',
   fields: [
     {
       type: 'string',
@@ -22,8 +22,8 @@ export const articleStripBlockSchema: Template = {
   ],
   ui: {
     defaultItem: {
-      title: 'Title',
-      featured: false,
+      title: 'Featured articles',
+      featured: true,
       titleAction: {
         title:
           'We have got lot more exciting blogs for you. Feel free to explore them.',

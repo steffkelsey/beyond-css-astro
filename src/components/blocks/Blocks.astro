@@ -1,6 +1,7 @@
 ---
 import { tinaField } from '@tinacms/astro/tina-field';
 import type { PageBlock } from '../../lib/tina/data';
+import ArticleGrid from './ArticleGrid.astro';
 import ArticleStrip from './ArticleStrip.astro';
 import Content from './Content.astro';
 import Cta from './Cta.astro';
@@ -19,6 +20,8 @@ const { data, withGradient = false } = Astro.props;
   data?.map((block) => {
     const rendered = (() => {
       switch (block.__typename) {
+        case 'PageBlocksArticleGrid':
+          return <ArticleGrid data={block} />;
         case 'PageBlocksArticleStrip':
           return <ArticleStrip data={block} />;
         case 'PageBlocksContent':
