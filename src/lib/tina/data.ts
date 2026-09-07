@@ -70,6 +70,10 @@ export type CmsPage = Awaited<ReturnType<typeof getPage>>['data']['page'];
 export type PageBlock = NonNullable<NonNullable<CmsPage['blocks']>[number]>;
 export type PageBlockTypename = PageBlock['__typename'];
 
+export type ArticleGridBlock = Extract<
+  PageBlock,
+  { __typename: 'PageBlocksArticleGrid' }
+>;
 export type ArticleStripBlock = Extract<
   PageBlock,
   { __typename: 'PageBlocksArticleStrip' }
