@@ -88,12 +88,24 @@ export type DividerBlock = Extract<
   { __typename: 'PageBlocksDivider' }
 >;
 export type HeroBlock = Extract<PageBlock, { __typename: 'PageBlocksHero' }>;
+export type LargeArticlePreviewBlock = Extract<
+  PageBlock,
+  { __typename: 'PageBlocksLargeArticlePreview' }
+>;
+export type SocialActionsBlock = Extract<
+  PageBlock,
+  { __typename: 'PageBlocksSocialActions' }
+>;
 
 export type CmsConfigNav = NonNullable<NonNullable<CmsConfig['nav']>[number]>;
 export type CmsConfigSocialLink = NonNullable<
   NonNullable<CmsConfig['socialLinks']>[number]
 >;
 export type CmsConfigSeo = NonNullable<CmsConfig['seo']>;
+
+export type SocialAction = NonNullable<
+  NonNullable<SocialActionsBlock['actions']>[number]
+>;
 
 /** Tina rich-text bodies are typed as `any` in the generated client; this is what `<TinaMarkdown>` expects. */
 export type RichText = TinaRichTextContent;
