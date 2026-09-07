@@ -1,11 +1,41 @@
 ---
+import { tinaField } from '@tinacms/astro/tina-field';
 import Button from './Button.astro';
-const { class: className = '', withBorder } = Astro.props;
+
+interface Action {
+  title?: string | null;
+  label?: string | null;
+  showTopBorder: boolean | null;
+  _content_source?: {
+    queryId: string;
+    path: (string | number)[];
+    expandedPath: (string | number)[];
+  };
+}
+interface Props {
+  data?: Action | null;
+  withBorder?: boolean | false;
+  class?: string | null;
+}
+
+const { class: className = '', data, withBorder } = Astro.props;
+const showBorder = withBorder || data?.showTopBorder;
 ---
 
-<div class:list={[withBorder && 'border-top padding-block-start-8', className]}>
-  <p>We have got lot more exciting blogs for you. Feel free to explore them.</p>
-  <Button theme="secondary" href="/articles">View all blogs</Button>
+<div class:list={[showBorder && 'border-top padding-block-start-8', className]}>
+  <p data-tina-field={tinaField(data, 'title')}>
+    {
+      (data?.title && data?.title) ||
+        'We have got lot more exciting blogs for you. Feel free to explore them.'
+    }
+  </p>
+  <Button
+    theme="secondary"
+    href="/articles"
+    data-tina-field={tinaField(data, 'label')}
+  >
+    {(data?.label && data?.label) || 'View all blogs'}
+  </Button>
 </div>
 
 <style lang="scss">
