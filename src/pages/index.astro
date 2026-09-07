@@ -4,10 +4,9 @@ import ArticlePreview from '../components/ArticlePreview.astro';
 import OverflowGrid from '../components/OverflowGrid.astro';
 import CallToAction from '../components/CallToAction.astro';
 import ViewAllBlogs from '../components/ViewAllBlogs.astro';
-import Divider from '../components/Divider.astro';
 import { listArticles, listFeaturedArticles } from '../lib/tina/data';
 
-const featuredArticles = (await listFeaturedArticles()).slice(0, 4);
+const featuredArticles = await listFeaturedArticles(4);
 const allArticles = await listArticles();
 ---
 
@@ -72,8 +71,6 @@ const allArticles = await listArticles();
   }
 
   .home-featured-grid {
-    //--flow-spacer: #{$featured-content-block-padding};
-
     display: grid;
     gap: 1rem;
 

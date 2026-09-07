@@ -19,31 +19,29 @@ export type CmsArticle = Awaited<
 export type CmsAuthor = Awaited<ReturnType<typeof getAuthor>>['data']['author'];
 
 export async function listArticles() {
-  const result = await client.queries.articleConnection();
-  return (result.data.articleConnection.edges ?? [])
-    .flatMap((edge) => (edge?.node ? [edge.node] : []))
-    .sort((a, b) => {
-      const ad = a.date ? new Date(a.date).valueOf() : 0;
-      const bd = b.date ? new Date(b.date).valueOf() : 0;
-      return bd - ad;
-    });
+  const result = await client.queries.articleConnection({
+    sort: 'date',
+  });
+  return (result.data.articleConnection.edges ?? []).flatMap((edge) =>
+    edge?.node ? [edge.node] : [],
+  );
 }
 
-export async function listFeaturedArticles() {
+export async function listFeaturedArticles(pageSize: number = 3) {
   const result = await client.queries.articleConnection({
     filter: { featured: { eq: true } },
+    sort: 'date',
+    first: pageSize,
   });
-  return (result.data.articleConnection.edges ?? [])
-    .flatMap((edge) => (edge?.node ? [edge.node] : []))
-    .sort((a, b) => {
-      const ad = a.date ? new Date(a.date).valueOf() : 0;
-      const bd = b.date ? new Date(b.date).valueOf() : 0;
-      return bd - ad;
-    });
+  return (result.data.articleConnection.edges ?? []).flatMap((edge) =>
+    edge?.node ? [edge.node] : [],
+  );
 }
 
 export async function listAuthors() {
-  const result = await client.queries.authorConnection();
+  const result = await client.queries.authorConnection({
+    sort: 'name',
+  });
   return (result.data.authorConnection.edges ?? []).flatMap((edge) =>
     edge?.node ? [edge.node] : [],
   );
