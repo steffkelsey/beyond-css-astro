@@ -70,6 +70,10 @@ export type CmsPage = Awaited<ReturnType<typeof getPage>>['data']['page'];
 export type PageBlock = NonNullable<NonNullable<CmsPage['blocks']>[number]>;
 export type PageBlockTypename = PageBlock['__typename'];
 
+export type ArticleStripBlock = Extract<
+  PageBlock,
+  { __typename: 'PageBlocksArticleStrip' }
+>;
 export type ContentBlock = Extract<
   PageBlock,
   { __typename: 'PageBlocksContent' }
@@ -86,6 +90,8 @@ export type CmsConfigSocialLink = NonNullable<
   NonNullable<CmsConfig['socialLinks']>[number]
 >;
 export type CmsConfigSeo = NonNullable<CmsConfig['seo']>;
+
+export type TitleActionField = NonNullable<ArticleStripBlock['titleAction']>;
 
 /** Tina rich-text bodies are typed as `any` in the generated client; this is what `<TinaMarkdown>` expects. */
 export type RichText = TinaRichTextContent;

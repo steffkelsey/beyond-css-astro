@@ -3,19 +3,30 @@ import type { ArticleStripBlock } from '../../lib/tina/data';
 import { tinaField } from '@tinacms/astro/tina-field';
 import OverflowGrid from '../OverflowGrid.astro';
 import ViewAllBlogs from '../ViewAllBlogs.astro';
+import { listArticles, listFeaturedArticles } from '../../lib/tina/data';
 
 interface Props {
   data: ArticleStripBlock;
 }
-const { data } = Astro.props;
 
+const { data } = Astro.props;
+let articles;
+const numArticles = 3;
+if (data.featured) {
+  articles = await listFeaturedArticles(numArticles);
+} else {
+  articles = await listArticles(numArticles);
+}
 ---
-<section class="section flow strip">
-  <h2 class="heading-2" data-tina-field={tinaField(data, "title")}>{data.title}</h2>
+
+<section class="strip | flow container section">
+  <h2 class="heading-2" data-tina-field={tinaField(data, 'title')}>
+    {data.title}
+  </h2>
   <div class="grid-auto-fit">
     <OverflowGrid {articles} columnSize="60%" />
   </div>
-  <ViewAllBlogs {data.blogsActionTopBorder && withBorder} />
+  <ViewAllBlogs data={data.titleAction} />
 </section>
 
 <style lang="scss">
