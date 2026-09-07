@@ -21,6 +21,7 @@ export type CmsAuthor = Awaited<ReturnType<typeof getAuthor>>['data']['author'];
 export async function listArticles() {
   const result = await client.queries.articleConnection({
     sort: 'date',
+    last: 9999, // hack to make all the articles come in reverse. Ignore page size until later
   });
   return (result.data.articleConnection.edges ?? []).flatMap((edge) =>
     edge?.node ? [edge.node] : [],
@@ -31,7 +32,7 @@ export async function listFeaturedArticles(pageSize: number = 3) {
   const result = await client.queries.articleConnection({
     filter: { featured: { eq: true } },
     sort: 'date',
-    first: pageSize,
+    last: pageSize,
   });
   return (result.data.articleConnection.edges ?? []).flatMap((edge) =>
     edge?.node ? [edge.node] : [],
