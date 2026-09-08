@@ -44,6 +44,12 @@ const { skipTo = '#main' } = Astro.props;
 <style lang="scss">
   @use '../styles/abstracts' as *;
 
+  .container {
+    --max-width: 74rem;
+    /* @link https://utopia.fyi/clamp/calculator?a=360,768,48—96 */
+    --padding: clamp(3rem, 0.3529rem + 11.7647vw, 6rem);
+  }
+
   .site-header {
     color: $site-header-color;
     background-color: $site-header-background-color;
@@ -126,7 +132,7 @@ const { skipTo = '#main' } = Astro.props;
       [aria-controls='main-menu'] {
         display: block;
         position: absolute;
-        right: 1rem;
+        right: 0rem;
         background: transparent;
         border: 0;
 
@@ -168,6 +174,11 @@ const { skipTo = '#main' } = Astro.props;
       animation-range-start: 120vh;
       animation-range-end: 160vh;
 
+      .container {
+        $container-padding: clamp(3rem, 0.3529rem + 11.7647vw, 6rem);
+        --padding: var(--sticky-nav-container-padding, #{$container-padding});
+      }
+
       &__inner {
         padding: var(--sticky-nav-padding);
       }
@@ -183,6 +194,10 @@ const { skipTo = '#main' } = Astro.props;
         background-color: var(--sticky-nav-bg, transparent);
       }
 
+      [aria-controls='main-menu'] {
+        right: 1rem;
+      }
+
       @keyframes sticky-nav {
         from {
           --sticky-nav-effect: #{$sticky-nav-effect};
@@ -190,6 +205,7 @@ const { skipTo = '#main' } = Astro.props;
           --sticky-nav-padding: #{$sticky-nav-padding};
           --sticky-nav-border: 0;
           --sticky-nav-logo-max-height: 1.5rem;
+          --sticky-nav-container-padding: 0;
 
           width: min($sticky-nav-max-width, 90%);
           margin-inline: auto;
@@ -200,6 +216,7 @@ const { skipTo = '#main' } = Astro.props;
           --sticky-nav-padding: #{$sticky-nav-padding};
           --sticky-nav-border: #{$sticky-nav-border};
           --sticky-nav-logo-max-height: 1.5rem;
+          --sticky-nav-container-padding: 0;
 
           top: 0;
           width: min($sticky-nav-max-width, 90%);

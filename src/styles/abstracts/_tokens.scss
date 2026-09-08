@@ -95,7 +95,8 @@ $section-padding-block: clamp(2.25rem, 1.663rem + 2.6087vw, 3.75rem);
 /* @link https://utopia.fyi/clamp/calculator?a=360,1280,40—72 */
 $featured-content-block-padding: clamp(2.5rem, 1.7174rem + 3.4783vw, 4.5rem);
 
-$container-min-margin-inline: $size-4;
+/* @link https://utopia.fyi/clamp/calculator?a=360,768,24—64 */
+$container-min-margin-inline: clamp(1.5rem, -0.7059rem + 9.8039vw, 4rem);
 $container-max-width: 70rem; // 1120px
 $container-max-width-narrow: 52.5rem; // 840px
 //$container-max-width-wide: 75rem;
@@ -134,7 +135,7 @@ $sticky-nav-effect: blur(16px);
 $sticky-nav-bg: hsl(0 0% 95% / 0.7);
 $sticky-nav-padding: $size-4;
 $sticky-nav-border-radius: $border-radius-2;
-$sticky-nav-max-width: 1000px;
+$sticky-nav-max-width: 1050px;
 $sticky-nav-medium-breakpoint: 1016px;
 $sticky-nav-small-breakpoint: 550px;
 $sticky-nav-border: 1px solid $color-neutral-000;
