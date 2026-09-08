@@ -1,0 +1,27 @@
+---
+import { articlesPageSize, getPage, listArticles } from '../../lib/tina/data';
+import PageBody from '../../components/islands/PageBody.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
+import type { GetStaticPathsOptions } from 'astro';
+import { islands } from '../../lib/tina/islands';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allArticles = await listArticles();
+
+  return paginate(allArticles, { pageSize: articlesPageSize });
+}
+
+const slug = 'articles';
+const p = await getPage(slug);
+const data = p.data?.page;
+if (!data) return new Response('Not Found', { status: 404 });
+
+const { page } = Astro.props;
+---
+
+<BaseLayout title={data.seoTitle}>
+  <TinaIsland name="page" wrapper={islands.page.wrapper} params={{ slug }}>
+    <PageBody data={data} {page} />
+  </TinaIsland>
+</BaseLayout>
