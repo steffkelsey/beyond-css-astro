@@ -4,7 +4,7 @@ const { withImage } = Astro.props;
 ---
 
 <div class="cta" data-type={withImage && 'image'}>
-  <h2>Want to get the latest insights on Travel Fun Food?</h2>
+  <h2 class="heading-2">Want to get the latest insights on Travel Fun Food?</h2>
   <p>We promise, we won't spam you</p>
   <form action="POST" class="subscribe-form">
     <label class="visually-hidden" for="email">Email:</label>
@@ -26,11 +26,8 @@ const { withImage } = Astro.props;
     border: 1px solid $color-neutral-100;
 
     > h2 {
-      font-family: $font-family-accent;
       font-size: clamp(2rem, -1rem + 5.7143cqi, 3rem);
-      font-weight: $font-weight-bold;
       color: $color-neutral-1000;
-      line-height: 1.1;
     }
 
     > p {
