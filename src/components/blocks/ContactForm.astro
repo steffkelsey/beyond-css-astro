@@ -1,0 +1,52 @@
+---
+import type { ContactFormBlock } from '../../lib/tina/data';
+import { tinaField } from '@tinacms/astro/tina-field';
+import Button from '../Button.astro';
+
+interface Props {
+  data: ContactFormBlock;
+}
+const { data } = Astro.props;
+const type = data.width;
+const hasType = type !== 'regular';
+---
+
+<section
+  class:list={['container', data.withPadding && 'section']}
+  data-type={hasType && type}
+>
+  <form action="POST" class="contact-form flow">
+    <label class="visually-hidden" for="name">Name:</label>
+    <input class="noflow" type="text" name="name" placeholder="Name" />
+    <label class="visually-hidden" for="email">Email:</label>
+    <input type="email" name="email" placeholder="Email" />
+    <label class="visually-hidden" for="message">Message:</label>
+    <textarea type="text" name="message" placeholder="Message"></textarea>
+    <Button
+      theme="primary"
+      fullWidth="true"
+      data-tina-field={tinaField(data, 'buttonLabel')}
+      >{data.buttonLabel}</Button
+    >
+  </form>
+</section>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .noflow {
+    --flow-spacer: 0;
+  }
+
+  .contact-form {
+    > input,
+    > textarea {
+      width: 100%;
+    }
+
+    > textarea {
+      min-height: 11rem;
+      resize: vertical;
+    }
+  }
+</style>
