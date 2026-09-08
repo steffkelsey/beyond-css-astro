@@ -1,4 +1,5 @@
 import type { Collection } from 'tinacms';
+import type { CmsConfigSocialLink } from '../../src/lib/tina/data';
 
 export const GlobalConfigCollection: Collection = {
   name: 'config',
@@ -89,9 +90,9 @@ export const GlobalConfigCollection: Collection = {
       type: 'object',
       list: true,
       ui: {
-        itemProps: (item) => {
+        itemProps: (item: CmsConfigSocialLink) => {
           return {
-            label: item.title,
+            label: item.title ?? '',
           };
         },
       },

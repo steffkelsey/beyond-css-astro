@@ -6,6 +6,7 @@ import { ctaBlockSchema } from '../../src/components/blocks/cta.template';
 import { dividerBlockSchema } from '../../src/components/blocks/divider.template';
 import { heroBlockSchema } from '../../src/components/blocks/hero.template';
 import { largeArticlePreviewBlockSchema } from '../../src/components/blocks/largearticlepreview.template';
+import { socialActionsBlockSchema } from '../../src/components/blocks/socialactions.template';
 
 export const PageCollection: Collection = {
   name: 'page',
@@ -50,6 +51,7 @@ export const PageCollection: Collection = {
         dividerBlockSchema,
         heroBlockSchema,
         largeArticlePreviewBlockSchema,
+        socialActionsBlockSchema,
       ],
     },
   ],

@@ -92,6 +92,10 @@ export type LargeArticlePreviewBlock = Extract<
   PageBlock,
   { __typename: 'PageBlocksLargeArticlePreview' }
 >;
+export type SocialActionsBlock = Extract<
+  PageBlock,
+  { __typename: 'PageBlocksSocialActions' }
+>;
 
 export type CmsConfigNav = NonNullable<NonNullable<CmsConfig['nav']>[number]>;
 export type CmsConfigSocialLink = NonNullable<
@@ -99,6 +103,9 @@ export type CmsConfigSocialLink = NonNullable<
 >;
 export type CmsConfigSeo = NonNullable<CmsConfig['seo']>;
 
+export type SocialAction = NonNullable<
+  NonNullable<SocialActionsBlock['actions']>[number]
+>;
 export type TitleActionField = NonNullable<ArticleStripBlock['titleAction']>;
 
 /** Tina rich-text bodies are typed as `any` in the generated client; this is what `<TinaMarkdown>` expects. */

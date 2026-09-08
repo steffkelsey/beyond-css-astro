@@ -8,6 +8,7 @@ import Cta from './Cta.astro';
 import Divider from './Divider.astro';
 import Hero from './Hero.astro';
 import LargeArticlePreview from './LargeArticlePreview.astro';
+import SocialActions from './SocialActions.astro';
 
 interface Props {
   data?: Array<PageBlock> | null;
@@ -35,6 +36,8 @@ const { data, withGradient = false } = Astro.props;
           return <Hero data={block} withAccent={withGradient} />;
         case 'PageBlocksLargeArticlePreview':
           return <LargeArticlePreview data={block} />;
+        case 'PageBlocksSocialActions':
+          return <SocialActions data={block} />;
       }
     })();
     return (
