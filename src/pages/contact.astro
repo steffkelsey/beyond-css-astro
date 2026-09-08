@@ -41,7 +41,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       href="https://instagram.com/tff"
       ><span class="social-icon"
         ><img src="/images/instagram_white.svg" alt="" /></span
-      ><span class="fs-500">Follow on Instagram</span></Button
+      ><span class="social-text">Follow on Instagram</span></Button
     >
     <Button
       theme="twitter"
@@ -50,7 +50,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       href="https://twitter.com/tff"
       ><span class="social-icon"
         ><img src="/images/twitter_white.svg" alt="" /></span
-      ><span class="fs-500">Follow on Twitter</span></Button
+      ><span class="social-text">Follow on Twitter</span></Button
     >
     <Button
       theme="facebook"
@@ -59,7 +59,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       href="https://facebook.com/tff"
       ><span class="social-icon"
         ><img src="/images/facebook_white.svg" alt="" /></span
-      ><span class="fs-500">Follow on Facebook</span></Button
+      ><span class="social-text">Follow on Facebook</span></Button
     >
   </section>
 
@@ -107,5 +107,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .social-icon {
     position: absolute;
     left: 1rem;
+  }
+
+  .social-text {
+    font-size: $action-button-font-size;
   }
 </style>

@@ -26,12 +26,13 @@
 @mixin heading(
   $fs,
   $color: $heading-color-default,
-  $line-height: $heading-line-height-default
+  $line-height: $heading-line-height-default,
+  $font-family: $heading-font-family
 ) {
   font-size: $fs;
   color: $color;
 
-  font-family: $heading-font-family;
+  font-family: $font-family;
   text-transform: $heading-text-transform;
   letter-spacing: $heading-letter-spacing;
   font-weight: $heading-font-weight;

@@ -70,9 +70,14 @@ $heading-1-color: $color-primary-400;
 $heading-1-line-height: 0.8;
 $heading-2-font-size: clamp(3rem, 1.6765rem + 5.8824vw, 4.5rem);
 $heading-2-color: $color-primary-400;
+// This system the font family is different for the smaller headings (in articles etc)
+$heading-3-font-family: $font-family-base;
+$heading-3-line-height: 1.5;
 /* @link https://utopia.fyi/clamp/calculator?a=768,1280,24—32 */
 $heading-3-font-size: clamp(1.5rem, 0.75rem + 1.5625vw, 2rem);
 $heading-3-color: $heading-color-default;
+$heading-4-font-family: $font-family-base;
+$heading-4-line-height: 1.5;
 /* @link https://utopia.fyi/clamp/calculator?a=768,1280,18—24 */
 $heading-4-font-size: clamp(1.125rem, 0.5625rem + 1.1719vw, 1.5rem);
 $heading-4-color: $heading-color-default;
@@ -181,6 +186,9 @@ $button-twitter-color: $color-neutral-000;
 $button-twitter-background: $color-neutral-1000;
 $button-twitter-color-hover: $color-neutral-000;
 $button-twitter-background-hover: $color-neutral-1000;
+// action buttons
+/* @link https://utopia.fyi/clamp/calculator?a=768,1280,18—24 */
+$action-button-font-size: clamp(1.125rem, 0.5625rem + 1.1719vw, 1.5rem);
 
 // article previews
 $article-preview-spacing: $size-3;
