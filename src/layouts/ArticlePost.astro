@@ -1,10 +1,8 @@
 ---
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
 import BaseLayout from './BaseLayout.astro';
-import { listFeaturedArticles } from '../lib/tina/data';
-import OverflowGrid from '../components/OverflowGrid.astro';
-import CallToAction from '../components/CallToAction.astro';
-import Divider from '../components/Divider.astro';
-import ViewAllBlogs from '../components/ViewAllBlogs.astro';
+import { getPage } from '../lib/tina/data';
+import PageBody from '../components/islands/PageBody.astro';
 
 interface Props {
   title: string;
@@ -13,7 +11,9 @@ interface Props {
   slug: string;
 }
 
-const featuredArticles = await listFeaturedArticles(3);
+const p = await getPage('article');
+const data = p.data?.page;
+if (!data) return new Response('Not Found', { status: 404 });
 
 const { title, description, author, slug } = Astro.props;
 ---
@@ -26,33 +26,12 @@ const { title, description, author, slug } = Astro.props;
 >
   <main id="main">
     <slot />
-    <!-- TODO create blocks out of below for visual editing -->
-    <section class="section container">
-      <Divider />
-    </section>
-
-    <section class="featured section flow container">
-      <h2 class="heading-2">Featured travel articles</h2>
-      <div class="grid-auto-fit">
-        <OverflowGrid
-          articles={featuredArticles.slice(0, 3)}
-          columnSize="60%"
-        />
-      </div>
-      <ViewAllBlogs withBorder />
-    </section>
-
-    <section class="section container">
-      <CallToAction withImage />
-    </section>
-    <!-- End TODO -->
+    <TinaIsland
+      name="page"
+      wrapper={{ tag: 'div' }}
+      params={{ slug: 'article' }}
+    >
+      <PageBody data={data} />
+    </TinaIsland>
   </main>
 </BaseLayout>
-
-<style lang="scss">
-  @use '../styles/abstracts' as *;
-
-  .featured {
-    --flow-spacer: #{$featured-content-block-padding};
-  }
-</style>

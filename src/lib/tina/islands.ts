@@ -31,10 +31,10 @@ export const islands: IslandRegistry = {
       }
       const allArticles = await listArticles();
       const lastPageNum = Math.ceil(allArticles.length / articlesPageSize);
-      const nextPage = allArticles.length > 1 ? `/${slug}/2` : undefined;
       const last = lastPageNum > 1 ? `/${slug}/${lastPageNum}` : undefined;
+      const nextPage = last !== undefined ? `/${slug}/2` : undefined;
       const p: Page = {
-        data: allArticles,
+        data: allArticles.splice(0, articlesPageSize),
         start: 0,
         end: articlesPageSize - 1,
         size: articlesPageSize,
