@@ -1,0 +1,93 @@
+---
+import type { ArticlePaginatorBlock } from '../../lib/tina/data';
+import type { Page } from 'astro';
+import ArticlePreview from '../ArticlePreview.astro';
+import Button from '../Button.astro';
+
+interface Props {
+  data: ArticlePaginatorBlock;
+  page?: Page | null;
+}
+
+const { data, page } = Astro.props;
+const type = data.width;
+const hasType = type !== 'regular';
+
+const numberButtons = [
+  { url: '/articles', label: '1', selected: 1 === page?.currentPage },
+];
+for (let i: number = 2; i <= (page?.lastPage ?? 0); i++) {
+  numberButtons.push({
+    url: `/articles/${i}/`,
+    label: `${i}`,
+    selected: i === (page?.currentPage ?? false),
+  });
+}
+
+const showPaginationControls =
+  page?.url.next !== undefined || page?.url.prev !== undefined;
+---
+
+<section
+  class:list={['container', data.withPadding && 'section']}
+  data-type={hasType && type}
+>
+  <div class="grid-auto-fit">
+    {page?.data.map((article) => <ArticlePreview {article} />)}
+  </div>
+  {
+    showPaginationControls && (
+      <div class="pagination-controls">
+        <Button
+          theme="secondary"
+          href={page.url.prev}
+          disabled={page.url.prev === undefined}
+        >
+          &lt; Prev
+        </Button>
+        {numberButtons.map((item) => (
+          <Button
+            theme="secondary"
+            href={item.url}
+            class:list={['number', item.selected && 'selected']}
+          >
+            {item.label}
+          </Button>
+        ))}
+        <Button
+          theme="secondary"
+          href={page.url.next}
+          disabled={page.url.next === undefined}
+        >
+          Next &gt;
+        </Button>
+      </div>
+    )
+  }
+</section>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .pagination-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding-block-start: $size-11;
+
+    .number {
+      display: none;
+    }
+
+    /* only show the numbered page buttons on bigger screens */
+    @include mq(medium) {
+      .number {
+        display: flex;
+      }
+    }
+  }
+
+  .grid-auto-fit {
+    --grid-col-min: 357px;
+  }
+</style>

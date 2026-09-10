@@ -5,6 +5,7 @@ const {
   class: className,
   fullWidth = false,
   position = 'static',
+  disabled = false,
   ...rest
 } = Astro.props;
 let El = 'button';
@@ -17,6 +18,7 @@ if (fullWidth) {
 
 <El
   class:list={['button', className]}
+  disabled={disabled}
   {href}
   data-type={theme}
   style={`--width: ${width}; --position: ${position};`}
@@ -65,6 +67,19 @@ if (fullWidth) {
       &:is(:hover, :focus) {
         background-color: $button-secondary-background-hover;
         color: $button-secondary-color-hover;
+      }
+
+      &.selected {
+        background-color: $button-secondary-background-hover;
+        color: $button-secondary-color-hover;
+        pointer-events: none; // Disables the hover effect entirely
+        cursor: not-allowed;
+      }
+
+      &:is(:disabled) {
+        opacity: 0.25;
+        pointer-events: none; // Disables the hover effect entirely
+        cursor: not-allowed;
       }
     }
 

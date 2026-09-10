@@ -1,5 +1,6 @@
 import type { Collection } from 'tinacms';
 import { articleGridBlockSchema } from '../../src/components/blocks/articlegrid.template';
+import { articlePaginatorBlockSchema } from '../../src/components/blocks/articlepaginator.template';
 import { articleStripBlockSchema } from '../../src/components/blocks/articlestrip.template';
 import { contactFormBlockSchema } from '../../src/components/blocks/contactform.template';
 import { contentBlockSchema } from '../../src/components/blocks/content.template';
@@ -46,6 +47,7 @@ export const PageCollection: Collection = {
       ui: { visualSelector: true },
       templates: [
         articleGridBlockSchema,
+        articlePaginatorBlockSchema,
         articleStripBlockSchema,
         contactFormBlockSchema,
         contentBlockSchema,

@@ -2,13 +2,19 @@
 import Blocks from '../blocks/Blocks.astro';
 import Gradient from '../Gradient.astro';
 import type { CmsPage } from '../../lib/tina/data';
+import type { Page } from 'astro';
 
 interface Props {
   data?: CmsPage | null;
+  page?: Page | null;
 }
 
-const { data } = Astro.props;
+const { data, page } = Astro.props;
 ---
 
 {data?.withGradient && <Gradient />}
-{data && <Blocks data={data?.blocks} withGradient={data?.withGradient} />}
+{
+  data && (
+    <Blocks {page} data={data?.blocks} withGradient={data?.withGradient} />
+  )
+}

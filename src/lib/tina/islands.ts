@@ -12,15 +12,52 @@ import ArticleBody from '../../components/islands/ArticleBody.astro';
 import PageBody from '../../components/islands/PageBody.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import { getArticle, getConfig, getPage } from './data';
+import {
+  articlesPageSize,
+  getArticle,
+  getConfig,
+  getPage,
+  listArticles,
+} from './data';
+import type { Page } from 'astro';
+import { paginate } from 'astro';
 
 export const islands: IslandRegistry = {
   page: {
-    fetch: (_request, params) => getPage(params.get('slug') ?? 'home'),
+    fetch: async (_request, params) => {
+      const slug = params.get('slug') ?? 'home';
+      if (slug !== 'articles') {
+        return await getPage(slug);
+      }
+      const allArticles = await listArticles();
+      const lastPageNum = Math.ceil(allArticles.length / articlesPageSize);
+      const nextPage = allArticles.length > 1 ? `/${slug}/2` : undefined;
+      const last = lastPageNum > 1 ? `/${slug}/${lastPageNum}` : undefined;
+      const p: Page = {
+        data: allArticles,
+        start: 0,
+        end: articlesPageSize - 1,
+        size: articlesPageSize,
+        total: allArticles.length,
+        currentPage: 1,
+        lastPage: lastPageNum,
+        url: {
+          current: `/${slug}`,
+          next: nextPage,
+          prev: undefined,
+          first: undefined,
+          last: last,
+        },
+      };
+      const result = await getPage(slug);
+      result['page'] = p;
+      return result;
+    },
     component: PageBody,
     wrapper: { tag: 'main' },
     propsFromData: (data) => ({
       data: (data as QueryResult<PageQuery>).data?.page as CmsPage | undefined,
+      page: data.page,
     }),
   },
   article: {

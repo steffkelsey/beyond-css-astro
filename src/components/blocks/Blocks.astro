@@ -1,7 +1,9 @@
 ---
 import { tinaField } from '@tinacms/astro/tina-field';
 import type { PageBlock } from '../../lib/tina/data';
+import type { Page } from 'astro';
 import ArticleGrid from './ArticleGrid.astro';
+import ArticlePaginator from './ArticlePaginator.astro';
 import ArticleStrip from './ArticleStrip.astro';
 import ContactForm from './ContactForm.astro';
 import Content from './Content.astro';
@@ -14,9 +16,10 @@ import SocialActions from './SocialActions.astro';
 interface Props {
   data?: Array<PageBlock> | null;
   withGradient: boolean;
+  page?: Page | null;
 }
 
-const { data, withGradient = false } = Astro.props;
+const { data, page, withGradient = false } = Astro.props;
 ---
 
 {
@@ -25,6 +28,8 @@ const { data, withGradient = false } = Astro.props;
       switch (block.__typename) {
         case 'PageBlocksArticleGrid':
           return <ArticleGrid data={block} />;
+        case 'PageBlocksArticlePaginator':
+          return <ArticlePaginator data={block} {page} />;
         case 'PageBlocksArticleStrip':
           return <ArticleStrip data={block} />;
         case 'PageBlocksContactForm':
