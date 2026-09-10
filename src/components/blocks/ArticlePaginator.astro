@@ -13,12 +13,24 @@ const { data, page } = Astro.props;
 const type = data.width;
 const hasType = type !== 'regular';
 
+// find the base url before any page numbers are added
+const arrSplit = page?.url.current.split('/');
+let base = '';
+if (arrSplit) {
+  for (let i = 0; i < arrSplit.length; i++) {
+    if (/^\d+$/.test(arrSplit[i])) {
+      break;
+    }
+    base += arrSplit[i] === '' ? '' : `/${arrSplit[i]}`;
+  }
+}
+
 const numberButtons = [
-  { url: '/articles', label: '1', selected: 1 === page?.currentPage },
+  { url: base, label: '1', selected: 1 === page?.currentPage },
 ];
 for (let i: number = 2; i <= (page?.lastPage ?? 0); i++) {
   numberButtons.push({
-    url: `/articles/${i}/`,
+    url: `${base}/${i}/`,
     label: `${i}`,
     selected: i === (page?.currentPage ?? false),
   });
