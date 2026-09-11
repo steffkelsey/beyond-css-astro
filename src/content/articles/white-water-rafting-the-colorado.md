@@ -4,12 +4,13 @@ subtitle: An Adrenaline-Fueled Adventure
 author: src/content/authors/maya.json
 imageSrc: /images/articles/white-water-rafting-the-colorado.jpg
 imageAlt: A group of people white water rafting
-date: 2024-04-04
+date: 2024-04-04T00:00:00.000Z
 tags:
   - Rafting
   - United States
   - Adventure Travel
   - Nature
+  - Budget Travel
 featured: false
 ---
 

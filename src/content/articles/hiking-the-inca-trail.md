@@ -4,12 +4,13 @@ subtitle: A Conquest of Breathtaking Beauty
 author: src/content/authors/maya.json
 imageSrc: /images/articles/hiking-the-inca-trail.jpg
 imageAlt: Forested mountains during the sun rise
-date: 2024-04-12
+date: 2024-04-12T00:00:00.000Z
 tags:
   - Hiking
   - Peru
   - Adventure Travel
   - South America
+  - Budget Travel
 featured: false
 ---
 

@@ -3,13 +3,14 @@ title: Road Trip Essentials
 subtitle: Making Memories with the Family
 author: src/content/authors/claudette.json
 imageSrc: /images/articles/road-trip-essentials.jpg
-imageAlt: A van driving down a road, toward a mountain range
-date: 2024-02-10
+imageAlt: 'A van driving down a road, toward a mountain range'
+date: 2024-02-10T00:00:00.000Z
 tags:
   - Family Travel
   - Road Trip
   - Travel Tips
   - Packing List
+  - Budget Travel
 featured: true
 ---
 

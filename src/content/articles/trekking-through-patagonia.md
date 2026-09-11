@@ -4,12 +4,13 @@ subtitle: Where Glaciers Meet Mountains
 author: src/content/authors/maya.json
 imageSrc: /images/articles/trekking-through-patagonia.jpg
 imageAlt: Two people on a walking path with a large mountain in front of them
-date: 2024-03-08
+date: 2024-03-08T00:00:00.000Z
 tags:
   - Hiking
   - Argentina
   - Chile
   - Patagonia
+  - Budget Travel
 featured: false
 ---
 

@@ -11,9 +11,12 @@ export default defineConfig({
   adapter: node({ mode: 'standalone' }),
   redirects: {
     '/home': '/',
-    // TODO this is hardcoded to an article that may or may not exist in
+    // TODO this is hardcoded to an article that may or may not exist
     // in the future.
     '/article': '/articles/glamping-in-the-serengeti',
+    // TODO this is hardcoded to a tag that may or may not exist
+    // in the future.
+    '/tags': '/tags/budget-travel',
   },
   integrations: [tina(), metaTags()],
   vite: {

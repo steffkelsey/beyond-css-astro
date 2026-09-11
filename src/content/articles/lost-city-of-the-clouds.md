@@ -4,12 +4,13 @@ subtitle: Unveiling the Mystery of Machu Picchu
 author: src/content/authors/maya.json
 imageSrc: /images/articles/lost-city-of-the-clouds.jpg
 imageAlt: Mountain peaks with light clouds around them
-date: 2024-03-12
+date: 2024-03-12T00:00:00.000Z
 tags:
   - History
   - Peru
   - Machu Picchu
   - South America
+  - Budget Travel
 featured: false
 ---
 
