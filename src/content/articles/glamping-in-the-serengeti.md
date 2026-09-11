@@ -4,12 +4,13 @@ subtitle: Experiencing Luxury in the Wild
 author: src/content/authors/manjusha.json
 imageSrc: /images/articles/glamping-in-the-serengeti.jpg
 imageAlt: three hot air balloons taking flight over the Serengeti during run rise
-date: 2024-05-01
+date: 2024-05-01T00:00:00.000Z
 tags:
   - Glamping
   - Africa
   - Safari
   - Luxury Travel
+  - Budget Travel
 featured: false
 ---
 

@@ -5,6 +5,26 @@ import client from '../../../tina/__generated__/client';
 
 export const articlesPageSize = 9;
 
+export const substitute = (
+  data: CmsPage,
+  search: string,
+  replace: string,
+  typename: string = 'PageBlocksHero',
+  fieldName: string = 'title',
+) => {
+  for (const block of data?.blocks || []) {
+    if (block && block['__typename'] === typename) {
+      if (block[fieldName]) {
+        block[fieldName] = block[fieldName].replaceAll(search, replace);
+      }
+    }
+  }
+};
+
+export const tagToSlug = (tag: string) => {
+  return tag.toLowerCase().replace(/\s+/g, '-');
+};
+
 export const getConfig = () =>
   requestWithMetadata(client.queries.config({ relativePath: 'config.json' }));
 
