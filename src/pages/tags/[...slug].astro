@@ -13,7 +13,7 @@ export async function getStaticPaths() {
   return uniqueTags.map((tag) => {
     const filteredArticles = allArticles.filter((a) => a.tags.includes(tag));
     return {
-      params: { id: tag.toLowerCase().replace(/\s+/g, '-') },
+      params: { slug: tag.toLowerCase().replace(/\s+/g, '-') },
       props: {
         articles: filteredArticles,
         tag: tag,
