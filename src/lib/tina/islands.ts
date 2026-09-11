@@ -18,6 +18,8 @@ import {
   getConfig,
   getPage,
   listArticles,
+  substitute,
+  tagToSlug,
 } from './data';
 import type { Page } from 'astro';
 import { paginate } from 'astro';
@@ -26,13 +28,21 @@ export const islands: IslandRegistry = {
   page: {
     fetch: async (_request, params) => {
       const slug = params.get('slug') ?? 'home';
-      if (slug !== 'articles') {
+      if (slug !== 'articles' && slug !== 'tags') {
         return await getPage(slug);
       }
-      const allArticles = await listArticles();
+      let tagSlug = '';
+      const tag = params.get('tag');
+      let allArticles = await listArticles();
+      if (tag) {
+        allArticles = allArticles.filter((a) => a.tags.includes(tag));
+        tagSlug = `/${tagToSlug(tag)}`;
+      }
+
       const lastPageNum = Math.ceil(allArticles.length / articlesPageSize);
-      const last = lastPageNum > 1 ? `/${slug}/${lastPageNum}` : undefined;
-      const nextPage = last !== undefined ? `/${slug}/2` : undefined;
+      const last =
+        lastPageNum > 1 ? `/${slug}${tagSlug}/${lastPageNum}` : undefined;
+      const nextPage = last !== undefined ? `/${slug}${tagSlug}/2` : undefined;
       const p: Page = {
         data: allArticles.splice(0, articlesPageSize),
         start: 0,
@@ -42,7 +52,7 @@ export const islands: IslandRegistry = {
         currentPage: 1,
         lastPage: lastPageNum,
         url: {
-          current: `/${slug}`,
+          current: `/${slug}${tagSlug}`,
           next: nextPage,
           prev: undefined,
           first: undefined,
@@ -50,6 +60,9 @@ export const islands: IslandRegistry = {
         },
       };
       const result = await getPage(slug);
+      if (tag) {
+        substitute(result.data.page, '{tag}', tag);
+      }
       result['page'] = p;
       return result;
     },

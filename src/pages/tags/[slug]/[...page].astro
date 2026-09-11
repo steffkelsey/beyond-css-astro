@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
+import PageBody from '../../../components/islands/PageBody.astro';
+import type { GetStaticPathsOptions } from 'astro';
+import {
+  articlesPageSize,
+  getPage,
+  listArticles,
+  substitute,
+  tagToSlug,
+} from '../../../lib/tina/data';
+import { islands } from '../../../lib/tina/islands';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allArticles = await listArticles();
+
+  const uniqueTags = [
+    ...new Set(allArticles.map((article) => article.tags).flat()),
+  ];
+
+  return uniqueTags.flatMap((tag) => {
+    const filteredArticles = allArticles.filter((a) => a.tags.includes(tag));
+    const slug = tagToSlug(tag);
+
+    return paginate(filteredArticles, {
+      params: { slug, tag },
+      pageSize: articlesPageSize,
+      props: { tag: tag },
+    });
+  });
+}
+
+const slug = 'tags';
+const p = await getPage(slug);
+const data = p.data?.page;
+if (!data) return new Response('Not Found', { status: 404 });
+
+const { tag, page } = Astro.props;
+
+// Replace all instances of {tag} in HeroBlock title with the tag
+substitute(data, '{tag}', tag);
+---
+
+<BaseLayout title={data.seoTitle}>
+  <TinaIsland
+    name="page"
+    wrapper={islands.page.wrapper}
+    params={{ slug, tag }}
+    primary
+  >
+    <PageBody data={data} {page} />
+  </TinaIsland>
+</BaseLayout>

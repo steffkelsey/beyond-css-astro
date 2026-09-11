@@ -10,7 +10,11 @@ export async function getStaticPaths() {
   return pages
     .map((node) => node._sys.filename)
     .filter(
-      (slug) => slug !== 'home' && slug !== 'articles' && slug !== 'article',
+      (slug) =>
+        slug !== 'home' &&
+        slug !== 'articles' &&
+        slug !== 'article' &&
+        slug !== 'tag',
     )
     .map((slug) => ({ params: { slug } }));
 }

@@ -21,7 +21,12 @@ const { page } = Astro.props;
 ---
 
 <BaseLayout title={data.seoTitle}>
-  <TinaIsland name="page" wrapper={islands.page.wrapper} params={{ slug }}>
+  <TinaIsland
+    name="page"
+    wrapper={islands.page.wrapper}
+    params={{ slug }}
+    primary
+  >
     <PageBody data={data} {page} />
   </TinaIsland>
 </BaseLayout>
