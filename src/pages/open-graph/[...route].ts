@@ -1,17 +1,19 @@
 import { OGImageRoute } from 'astro-og-canvas';
 import { listArticles } from '../../lib/tina/data';
+import type { CmsArticle } from '../../lib/tina/data';
 
-const articlesCollection = await listArticles();
-const m = articlesCollection.map((article) => {
-  return [article._sys.filename, article];
-});
+const articlesCollection: CmsArticle[] = await listArticles();
+const m = new Map(
+  articlesCollection.map(
+    (article) => [article._sys.filename, article] as const,
+  ),
+);
 const pages = Object.fromEntries(m);
 
 export const { getStaticPaths, GET } = await OGImageRoute({
-  //param: "route",
   pages: pages,
 
-  getImageOptions: (path, page) => ({
+  getImageOptions: (_, page) => ({
     title: page.title,
     description: page.subtitle,
     logo: {

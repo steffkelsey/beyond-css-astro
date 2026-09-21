@@ -1,5 +1,14 @@
 ---
 import ArticlePreview from './ArticlePreview.astro';
+import type { CmsArticle } from '../lib/tina/data';
+
+interface Props {
+  articles: CmsArticle[];
+  numberOfArticles?: number;
+  excerptLength?: string;
+  columnSize?: string;
+}
+
 const {
   articles,
   numberOfArticles = 3,

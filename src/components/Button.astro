@@ -7,23 +7,34 @@ const {
   position = 'static',
   ...rest
 } = Astro.props;
-let El = 'button';
-if (href) El = 'a';
 let width = 'auto';
 if (fullWidth) {
   width = '100%';
 }
 ---
 
-<El
-  class:list={['button', className]}
-  {href}
-  data-type={theme}
-  style={`--width: ${width}; --position: ${position};`}
-  {...rest}
->
-  <slot />
-</El>
+{
+  href ? (
+    <a
+      class:list={['button', className]}
+      {href}
+      data-type={theme}
+      style={`--width: ${width}; --position: ${position};`}
+      {...rest}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      class:list={['button', className]}
+      data-type={theme}
+      style={`--width: ${width}; --position: ${position};`}
+      {...rest}
+    >
+      <slot />
+    </button>
+  )
+}
 
 <style lang="scss">
   @use '../styles/abstracts' as *;

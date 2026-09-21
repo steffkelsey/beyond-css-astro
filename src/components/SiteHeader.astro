@@ -30,15 +30,17 @@ const { skipTo = '#main' } = Astro.props;
 
 <script>
   const navToggle = document.querySelector('[aria-controls="main-menu"]');
-  navToggle.addEventListener('click', () => {
-    const isOpen = navToggle.getAttribute('aria-expanded');
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navToggle.getAttribute('aria-expanded');
 
-    if (isOpen === 'true') {
-      navToggle.setAttribute('aria-expanded', 'false');
-    } else {
-      navToggle.setAttribute('aria-expanded', 'true');
-    }
-  });
+      if (isOpen === 'true') {
+        navToggle.setAttribute('aria-expanded', 'false');
+      } else {
+        navToggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
 </script>
 
 <style lang="scss">
