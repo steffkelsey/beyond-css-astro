@@ -1,14 +1,16 @@
 ---
 import { tinaField } from '@tinacms/astro/tina-field';
-import Divider from './Divider.astro';
 import type { PageBlock } from '../../lib/tina/data';
 import Cta from './Cta.astro';
+import Divider from './Divider.astro';
+import Hero from './Hero.astro';
 
 interface Props {
   data?: Array<PageBlock> | null;
+  withGradient?: boolean | false;
 }
 
-const { data } = Astro.props;
+const { data, withGradient = false } = Astro.props;
 ---
 
 {
@@ -19,6 +21,8 @@ const { data } = Astro.props;
           return <Cta data={block} />;
         case 'PageBlocksDivider':
           return <Divider data={block} />;
+        case 'PageBlocksHero':
+          return <Hero data={block} withAccent={withGradient} />;
       }
     })();
     return (

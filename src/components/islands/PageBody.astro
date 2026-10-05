@@ -12,4 +12,11 @@ const blocks = (data?.blocks ?? []).filter((b) => b !== null);
 ---
 
 {data?.withGradient && <Gradient />}
-{data && <Blocks data={blocks} />}
+{
+  data && (
+    <Blocks
+      data={blocks}
+      withGradient={data.withGradient ? data.withGradient : false}
+    />
+  )
+}
