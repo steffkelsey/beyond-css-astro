@@ -78,6 +78,10 @@ export type ArticleStripBlock = Extract<
   PageBlock,
   { __typename: 'PageBlocksArticleStrip' }
 >;
+export type ContactFormBlock = Extract<
+  PageBlock,
+  { __typename: 'PageBlocksContactForm' }
+>;
 export type ContentBlock = Extract<
   PageBlock,
   { __typename: 'PageBlocksContent' }
