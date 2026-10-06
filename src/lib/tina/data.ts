@@ -3,6 +3,8 @@ import type { TinaRichTextContent } from '@tinacms/astro';
 import { requestWithMetadata } from '@tinacms/astro/data';
 import client from '../../../tina/__generated__/client';
 
+export const articlesPageSize = 9;
+
 export const getConfig = () =>
   requestWithMetadata(client.queries.config({ relativePath: 'config.json' }));
 
@@ -73,6 +75,10 @@ export type PageBlockTypename = PageBlock['__typename'];
 export type ArticleGridBlock = Extract<
   PageBlock,
   { __typename: 'PageBlocksArticleGrid' }
+>;
+export type ArticlePaginatorBlock = Extract<
+  PageBlock,
+  { __typename: 'PageBlocksArticlePaginator' }
 >;
 export type ArticleStripBlock = Extract<
   PageBlock,
