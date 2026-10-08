@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
+    "@astrojs/mdx": "^8.0.3",
     "@astrojs/node": "^11.1.4",
+    "@astrojs/sitemap": "^3.7.4",
     "@tinacms/astro": "^0.6.1",
     "astro": "^7.2.3",
     "astro-meta-tags": "^0.4.1",
